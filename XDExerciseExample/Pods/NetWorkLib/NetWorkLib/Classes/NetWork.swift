@@ -83,7 +83,7 @@ public class NetWork: NSObject {
             }
             
             
-            finishCallBack(result: result)
+            finishCallBack(result)
         }
         
     }
