@@ -15,7 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        // 设置住窗口
+        setupMainWindow()
         return true
     }
 
@@ -42,5 +44,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate {
+    
+    func setupMainWindow() {
+        // 1.创建窗口
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // 2.设置根控制器
+//        let account = DZAccount.account()
+        //        if account != nil{
+        let tabBarController = MainTabBarController()
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        //        }else{
+        // 进入登录界面
+        //        }
+        
+        
+    }
 }
 

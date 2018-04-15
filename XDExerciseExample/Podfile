@@ -7,18 +7,23 @@ target 'XDExerciseExample' do
   use_frameworks!
 
 pod 'Alamofire'
-pod 'NetWorkLib'
+#pod 'NetWorkLib'
+pod 'ReachabilitySwift'
+pod 'SDCycleScrollView'
 #pod 'SnapKit'
 pod 'SVProgressHUD'
-pod 'Kingfisher'
+#pod 'Kingfisher'
 #pod 'MJExtension'
 pod 'MJRefresh'
 pod 'XHLaunchAd'
 #pod 'SKPhotoBrowser'
 #pod 'DACircularProgress', '~> 2.3.1'
-#pod 'HandyJSON', '~> 1.7.2'
+pod 'HandyJSON', '~> 1.7.2'
 #pod 'RealmSwift'
-pod 'YYModel'
+#pod 'YYModel'
 #DKNightVersion 暂时没用，准备加入换肤功能
 #GYDataCenter：高性能数据库框架(GYDataCenter 是一个 SQLite 数据库框架)
 end
+
+
+
