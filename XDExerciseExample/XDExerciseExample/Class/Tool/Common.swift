@@ -30,9 +30,13 @@ let kTabbarH = IS_IPhoneX ? CGFloat(49.0+34.0) : CGFloat(49.0)
 /// 屏幕宽
 let kCellHeight : CGFloat = 44
 
+// MARK:- 间距
+/// 推荐
+let recommentMargin : CGFloat = 15
 
-
-
+// MARK:- 字体
+/// 推荐标题
+let recommentTitleFont = UIFont.systemFont(ofSize: 17.5)
 
 
 

@@ -1,14 +1,14 @@
 //
-//  RecommendModel.swift
+//  RecommendMainModel.swift
 //  XDExerciseExample
 //
 //  Created by xiudou on 2018/4/15.
 //  Copyright © 2018年 CoderST. All rights reserved.
-//
+//  轮播 + 视频等信息
 
 import UIKit
 import HandyJSON
-class RecommendModel: HandyJSON {
+class RecommendMainModel: HandyJSON {
     var code: Int = 0
     
     var list: List?
@@ -23,15 +23,26 @@ class List: HandyJSON {
     required init() {}
 }
 
+// HandyJSON支持枚举，只需要enum构造时服从HandyJSONEnum协议即可
+enum Media_Type:Int,HandyJSONEnum{
+    case video = 1 // 视频类型
+    case image = 2 // 图片类型
+}
+
+enum NormalOrProduct_Type:Int,HandyJSONEnum{
+    case product = 1 // 商品
+    case normal = 2 // 日常
+}
 class Video: HandyJSON {
     
-    var video_width: String = ""
+    var video_width: CGFloat = 0
+    
+    var video_height: CGFloat = 0
     
     var video_url: String = ""
     
-    var media_type: Int = 0
-    
-    var video_height: String = ""
+    //1.视频 2.图片 隐藏播放按钮
+    var media_type: Media_Type = .video
     
     var product_header_image: String = ""
     
@@ -44,8 +55,8 @@ class Video: HandyJSON {
     var product_name: String = ""
     
     var max_price: String = ""
-    
-    var type: String = ""
+    // 1:商品  2:日常
+    var type: NormalOrProduct_Type = .normal
     
     var product_views_count: Int = 0
     

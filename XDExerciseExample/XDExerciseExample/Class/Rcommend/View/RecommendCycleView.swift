@@ -8,25 +8,23 @@
 
 import UIKit
 import SDCycleScrollView
+protocol RecommendCycleViewDelegate : class{
+    func recommendCycleViewCycleScrollView(_ recommendCycleView: RecommendCycleView, didSelectItemAt index: Int)
+}
 class RecommendCycleView: UIView {
 
+    weak var delegate : RecommendCycleViewDelegate?
+    
     fileprivate lazy var cycleScrollView : SDCycleScrollView = {
         let cycleScrollView = SDCycleScrollView()
         return cycleScrollView
     }()
     
-    fileprivate lazy var imagePathsArray : [String] = [String]()
-    
-    var recommendCycleModelArray : [Recommend]?{
+    var imagePathsArray : [String]?{
         
         didSet{
-            guard let recommendCycleModelArray = recommendCycleModelArray else { return }
-            for (index, recommend) in recommendCycleModelArray.enumerated(){
-                imagePathsArray.append(recommend.recommend_images)
-//                if index == 0{
-//                    break
-//                }
-            }
+            guard let imagePathsArray = imagePathsArray else { return }
+       
             cycleScrollView.imageURLStringsGroup = imagePathsArray
         }
     }
@@ -53,8 +51,8 @@ class RecommendCycleView: UIView {
 extension RecommendCycleView : SDCycleScrollViewDelegate{
     /** 点击图片回调 */
     func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAt index: Int) {
-        guard let recommendCycleModelArray = recommendCycleModelArray else { return }
-        let recommendModel = recommendCycleModelArray[index]
-        debugLog(recommendModel.recommend_images)
+        delegate?.recommendCycleViewCycleScrollView(self, didSelectItemAt: index)
     }
+    
+    
 }

@@ -18,5 +18,5 @@ let GET_HOME_RECOMMEND_LIST = "/get_home_recommend_list" // 3.21 - 2.8.5 首页�
 let version_285 = "2.8.5"
 
 // MARK:- 请求个数
-let item_count = 10
+let item_count = 20
 

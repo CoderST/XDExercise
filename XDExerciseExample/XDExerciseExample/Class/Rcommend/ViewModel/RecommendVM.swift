@@ -11,7 +11,10 @@ import HandyJSON
 import SVProgressHUD
 class RecommendVM: NSObject {
 
-    var recommendModel : RecommendModel?
+    var recommendMainModel : RecommendMainModel?
+    
+    var imagePathsArray : [String] = [String]()
+    var videoModelFrameArray : [VideoModelFrame] = [VideoModelFrame]()
     
     fileprivate var current_page : Int = 1
     
@@ -29,10 +32,26 @@ extension RecommendVM{
             debugLog(result)
             guard let resultDict = result as? NSDictionary else { return }
 //            guard let resultDIC = resultDict["list"] as? [String : Any] else { return }
-            if let recommendModel = RecommendModel.deserialize(from: resultDict){
-                if recommendModel.code == 0{
-                    self.recommendModel = recommendModel
+            if let recommendMainModel = RecommendMainModel.deserialize(from: resultDict){
+                if recommendMainModel.code == 0{
+//                    self.recommendMainModel = recommendMainModel
+                    self.videoModelFrameArray.removeAll()
+                    
+                    /// 处理轮播数据
+                    if let recommendArray = recommendMainModel.list?.recommend{
+                        for (index, recommend) in recommendArray.enumerated(){
+                            self.imagePathsArray.append(recommend.recommend_images)
+
+                        }
+                    }
+                    
                     /// 处理frame数据
+                    guard let list = recommendMainModel.list else { return }
+                    for video in list.video{
+                        let videoF = VideoModelFrame(video)
+                        self.videoModelFrameArray.append(videoF)
+                    }
+//
                     successCallBack()
                 }else{
                     SVProgressHUD.showInfo(withStatus: resultDict["message"] as? String ?? "")
