@@ -35,9 +35,9 @@ enum NormalOrProduct_Type:Int,HandyJSONEnum{
 }
 class Video: HandyJSON {
     
-    var video_width: CGFloat = 0
+    var video_width: String = ""
     
-    var video_height: CGFloat = 0
+    var video_height: String = ""
     
     var video_url: String = ""
     
@@ -46,6 +46,8 @@ class Video: HandyJSON {
     
     var product_header_image: String = ""
     
+    var normal_header_image: String = ""
+    
     var video_id: String = ""
     
     var video_header_image: String = ""
@@ -53,6 +55,8 @@ class Video: HandyJSON {
     var video_url_stream: String = ""
     
     var product_name: String = ""
+    
+    var normal_name : String = ""
     
     var max_price: String = ""
     // 1:商品  2:日常
@@ -70,9 +74,9 @@ class Video: HandyJSON {
     
     var product_comment_count: Int = 0
     
-    var user: User?
+    var user: User = User()
     
-    var hot_list: [String] = [String]()
+    var hot_list: [HotDict] = [HotDict]()
     
     var product_fav_count: Int = 0
     
@@ -89,6 +93,47 @@ class Video: HandyJSON {
     var topics: [String] = [String]()
     
     var max_forward_price: Int = 0
+    required init() {}
+}
+class HotDict: HandyJSON {
+ 
+    var id : String = ""
+    
+    var pid : String = ""
+    
+    var root_id : String = ""
+    
+    var target_uid : String = ""
+    
+    var target_cid : String = ""
+    
+    var add_time : String = ""
+    
+    var content : String = ""
+    
+    var zan_count : String = ""
+    
+    var show : String = ""
+    
+    var is_zan : String = ""
+    
+    var user_info : UserInfor = UserInfor()
+    
+    var target_user_info : UserInfor = UserInfor()
+    
+    required init() {}
+}
+
+class UserInfor: HandyJSON {
+    
+    var avatar : String = ""
+    
+    var nick_name : String = ""
+    
+    var user_id : String = ""
+    
+    var genden : Int = 0
+    
     required init() {}
 }
 

@@ -50,7 +50,7 @@ class GifView: UIView {
 
 extension GifView{
     
-    func tapAction(){
+    @objc func tapAction(){
         delegate?.didGifView(self)
     }
     

@@ -12,6 +12,8 @@ class RecommendMainVC: UIViewController {
 
     fileprivate lazy var recommentVM : RecommendVM = RecommendVM()
     
+    fileprivate lazy var registerVM : RegisterVM = RegisterVM()
+    
     // MARK:- 懒加载
     // gif动画
     fileprivate lazy var gifView : GifView = {
@@ -64,6 +66,8 @@ class RecommendMainVC: UIViewController {
         networkLoadDatas()
         // 添加gif
 //        addGIFViewAnimation()
+        // 或者最新token
+        getNewToken()
     }
 
 }
@@ -82,6 +86,16 @@ extension RecommendMainVC{
         recommentVM.loadRecommendDatas(successCallBack: {
             self.recommendCycleView.imagePathsArray = self.recommentVM.imagePathsArray
             self.collectionView.reloadData()
+        }, stateCallBack: { (message) in
+            
+        }) { (error) in
+            
+        }
+    }
+    
+    func getNewToken(){
+        registerVM.registerSignIn(successCallBack: {
+            
         }, stateCallBack: { (message) in
             
         }) { (error) in

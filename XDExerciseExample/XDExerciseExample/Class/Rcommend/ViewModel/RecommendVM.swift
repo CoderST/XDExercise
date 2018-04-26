@@ -29,7 +29,7 @@ extension RecommendVM{
         ]
         
         NetWork.requestData(.post, URLString: GET_HOME_RECOMMEND_LIST, model: INDEX_URL, parameters: parameters, version: version_285) { (result) in
-            debugLog(result)
+//            debugLog(result)
             guard let resultDict = result as? NSDictionary else { return }
 //            guard let resultDIC = resultDict["list"] as? [String : Any] else { return }
             if let recommendMainModel = RecommendMainModel.deserialize(from: resultDict){

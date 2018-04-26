@@ -26,11 +26,11 @@ enum NetWorkStates {
     
 }
 
- let reachability = Reachability()!
+let reachability = Reachability()!
 
 
 public class NetWork: NSObject {
-   public class func requestData(_ type : MethodType, URLString : String, model : String, parameters:[String : Any]? = nil,version : String? = "1.8.0",finishCallBack : @escaping (_ result : Any) -> ()){
+    public class func requestData(_ type : MethodType, URLString : String, model : String, parameters:[String : Any]? = nil,version : String? = "1.8.0",finishCallBack : @escaping (_ result : Any) -> ()){
         
         var newParameters : [String : Any] = [String : Any]()
         if parameters != nil {
@@ -47,7 +47,7 @@ public class NetWork: NSObject {
                 stateString = "wifi"
             case .ViaWWAN :
                 stateString = "wwan"
-                default :
+            default :
                 stateString = "NO"
             }
             newParameters["network_status"] = stateString
@@ -63,18 +63,23 @@ public class NetWork: NSObject {
         newParameters["request_url"] = requestUrl
         // source
         newParameters["source"] = "iOS"
-        // auth_token
-        if TOKEN.characters.count > 0{
+        newParameters["device_identifier"] = "D9CF07CB6E094F91A5547B23EC6445AB"
+        var sign : String = ""
+        let signString = Utilities.dictionary(toString: newParameters) ?? ""
+        if TOKEN.count > 0{
             newParameters["auth_token"] = TOKEN
+            let resultSign = "\(signString)\(time)\(USER_ID)xiu^*dou@2016#07#30~!bj99$&"
+            sign = Utilities.md5(resultSign)
+        }else{
+            
+            let resultSign = "\(signString)\(time)xiu^*dou@2016#07#30~!bj99$&"
+            sign = Utilities.md5(resultSign)
         }
-    newParameters["device_identifier"] = "D9CF07CB6E094F91A5547B23EC6445AB"
-        // sign
-//        let signString = getSign(parameters: newParameters)
-    let signString = Utilities.dictionary(toString: newParameters) ?? ""
-        let resultSign = "\(signString)\(time)xiu^*dou@2016#07#30~!bj99$&"
-//        let sign = md5String(str: resultSign)
-    let sign = Utilities.md5(resultSign)
         newParameters["xsign"] = sign
+        
+        // sign
+        //        let signString = getSign(parameters: newParameters)
+        
         // 确定请求类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
         print("URL = https://xdapi2.beta.xiudou.net/Interfaces/index")
@@ -86,7 +91,7 @@ public class NetWork: NSObject {
             }
             
             
-            finishCallBack(result: result)
+            finishCallBack(result)
         }
         
     }
@@ -106,7 +111,7 @@ public class NetWork: NSObject {
                 continue
             }
             guard let objStirng = obj as? String else {
-             
+                
                 print("objc 转 string 失败")
                 continue
             }
@@ -120,7 +125,7 @@ public class NetWork: NSObject {
     class func md5String(str:String) -> String{
         let cStr = str.cString(using: String.Encoding.utf8);
         let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 16)
-//        let buffer = "0123456789abcdef"
+        //        let buffer = "0123456789abcdef"
         CC_MD5(cStr!,(CC_LONG)(strlen(cStr!)), buffer)
         let md5String = NSMutableString();
         for i in 0 ..< 16{
@@ -135,7 +140,7 @@ public class NetWork: NSObject {
         guard let carrier = telephonyInfo.subscriberCellularProvider else { return ""}
         return carrier.carrierName ?? ""
     }
-
+    
 }
 
 extension NetWork {
@@ -145,26 +150,26 @@ extension NetWork {
         reachability.whenReachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-//           DispatchQueue.main.async {
-                if reachability.isReachableViaWiFi {
-                    print("Reachable via WiFi")
-                    statesCallBack(.WIFE)
-                } else if reachability.isReachableViaWWAN{
-                    print("Reachable via Cellular")
-                    statesCallBack(.ViaWWAN)
-                }else {
-                    statesCallBack(.UNKNOW)
+            //           DispatchQueue.main.async {
+            if reachability.isReachableViaWiFi {
+                print("Reachable via WiFi")
+                statesCallBack(.WIFE)
+            } else if reachability.isReachableViaWWAN{
+                print("Reachable via Cellular")
+                statesCallBack(.ViaWWAN)
+            }else {
+                statesCallBack(.UNKNOW)
             }
-            }
-//        }
+        }
+        //        }
         
-                reachability.whenUnreachable = { reachability in
-                    DispatchQueue.main.async {
-                        print("Not reachable")
-                        statesCallBack(.UNKNOW)
-                    }
-                    
-
+        reachability.whenUnreachable = { reachability in
+            DispatchQueue.main.async {
+                print("Not reachable")
+                statesCallBack(.UNKNOW)
+            }
+            
+            
         }
         
         do {
@@ -179,7 +184,7 @@ extension NetWork {
         
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self,
-                                                            name: ReachabilityChangedNotification,
-                                                            object: reachability)
+                                                  name: ReachabilityChangedNotification,
+                                                  object: reachability)
     }
 }

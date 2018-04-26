@@ -78,21 +78,23 @@ extension MainNavigationController{
         let backgroundImage = UIImage(named: "Img_orange")
         bar.setBackgroundImage(backgroundImage, for: .default)
         
-        var barAttrs : [String : Any] = [String : Any]()
-        barAttrs[NSForegroundColorAttributeName] = UIColor.black
-        barAttrs[NSFontAttributeName] = UIFont.systemFont(ofSize: 18)
-        bar.titleTextAttributes = barAttrs
+//        var barAttrs : [String : Any] = [String : Any]()
+        let barAttrs : NSMutableDictionary = NSMutableDictionary()
+        barAttrs[NSAttributedStringKey.foregroundColor] = UIColor.black
+        barAttrs[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: 18)
+        bar.titleTextAttributes = barAttrs as? [NSAttributedStringKey : Any]
         
         let item = UIBarButtonItem.appearance()
         
-        var normalAttrs : [String : Any] = [String : Any]()
-        normalAttrs[NSForegroundColorAttributeName] = UIColor.green
-        normalAttrs[NSFontAttributeName] = UIFont.systemFont(ofSize: 15)
-        item.setTitleTextAttributes(normalAttrs, for: .normal)
+//        var normalAttrs : [String : Any] = [String : Any]()
+        let normalAttrs : NSMutableDictionary = NSMutableDictionary()
+        normalAttrs[NSAttributedStringKey.foregroundColor] = UIColor.green
+        normalAttrs[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: 15)
+        item.setTitleTextAttributes(normalAttrs as? [NSAttributedStringKey : Any], for: .normal)
         
-        var disableAttrs : [String : Any] = [String : Any]()
-        disableAttrs[NSForegroundColorAttributeName] = UIColor.gray
-        item.setTitleTextAttributes(disableAttrs, for: .disabled)
+        let disableAttrs : NSMutableDictionary = NSMutableDictionary()
+        disableAttrs[NSAttributedStringKey.backgroundColor] = UIColor.gray
+        item.setTitleTextAttributes(disableAttrs as? [NSAttributedStringKey : Any], for: .disabled)
     }
 }
 

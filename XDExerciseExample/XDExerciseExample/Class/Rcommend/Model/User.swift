@@ -34,12 +34,46 @@ class User: HandyJSON {
     required init() {}
 }
 
+// HandyJSON支持枚举，只需要enum构造时服从HandyJSONEnum协议即可
+enum Vip_Type:Int,HandyJSONEnum{
+    /// 未认证
+    case vip_none = 0
+    /// 已认证
+    case vip_ok = 1
+    /// 认证中
+    case vip_ing = 2
+    /// 被拒绝
+    case vip_refuse = 3
+}
+
+enum Official_Type:Int,HandyJSONEnum{
+    /// 未认证
+    case official_none = 0
+    /// 已认证
+    case official_ok = 1
+    /// 认证中
+    case official_ing = 2
+    /// 被拒绝
+    case official_refuse = 3
+}
+
+enum Celebrity_Type:Int,HandyJSONEnum{
+    /// 未认证
+    case celebrity_none = 0
+    /// 已认证
+    case celebrity_ok = 1
+    /// 认证中
+    case celebrity_ing = 2
+    /// 被拒绝
+    case celebrity_refuse = 3
+}
+
 class Certification: HandyJSON {
     /// 会员
-    var if_vip: Int = 0
+    var if_vip: Vip_Type = .vip_none
     /// 达人
-    var if_official_vip: Int = 0
+    var if_official_vip: Official_Type = .official_none
     /// 官方
-    var if_celebrity_vip: Int = 0
+    var if_celebrity_vip: Celebrity_Type = .celebrity_none
     required init() {}
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let TOKEN : String = ""
+
 // MARK:- 常量
 /// 屏幕宽
 let kScreenW = UIScreen.main.bounds.width
@@ -35,8 +35,24 @@ let kCellHeight : CGFloat = 44
 let recommentMargin : CGFloat = 15
 
 // MARK:- 字体
-/// 推荐标题
+/// 推荐-标题
 let recommentTitleFont = UIFont.systemFont(ofSize: 17.5)
+/// 推荐-价格
+let recommentPriceFont = UIFont.systemFont(ofSize: 14)
+/// 推荐-话题
+let recommentTopicFont = UIFont.systemFont(ofSize: 12.5)
+/// 推荐-评论
+let recommentCommentFont = UIFont.systemFont(ofSize: 12.5)
+
+// MARK:- 颜色
+let recommentCommentColor = UIColor(r: 0.2, g: 0.4, b: 0.6)
+let XDGlobalOrangeTextColor = UIColor.orange
+// MARK:- version
+let version_10 = "1.0"
+let version_285 = "2.8.5"
+
+// MARK:- 请求个数
+let item_count = 20
 
 
 

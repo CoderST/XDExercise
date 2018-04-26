@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface Utilities : NSObject
+#pragma mark - MD5加密
 +(NSString *) md5:(NSString *)str;
++(NSString *) anotherMD5:(NSString *)str;
+#pragma mark - 字典转字符串
 +(NSString*)dictionaryToString:(NSDictionary*)dic;
 @end
