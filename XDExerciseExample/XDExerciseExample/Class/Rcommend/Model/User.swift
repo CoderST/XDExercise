@@ -29,12 +29,24 @@ class User: HandyJSON {
     var certification: Certification?
     /// 七天协议认证
     var shop_agreement: [String]?
+    /// 店铺优惠券
+    var shop_coupon : shop_coupon_Type = .shop_coupon_none
     
     var seller_level: String = ""
     required init() {}
 }
 
+
+
 // HandyJSON支持枚举，只需要enum构造时服从HandyJSONEnum协议即可
+// 店铺优惠券
+enum shop_coupon_Type:Int,HandyJSONEnum{
+    /// 没有优惠券
+    case shop_coupon_none = 0
+    /// 有优惠券
+    case shop_coupon_ok = 1
+}
+
 enum Vip_Type:Int,HandyJSONEnum{
     /// 未认证
     case vip_none = 0

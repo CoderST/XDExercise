@@ -23,6 +23,16 @@ extension RegisterVM{
         
         NetWork.requestData(.post, URLString: SIGN_IN_URL, model: USER_URL, parameters: parameters, version: version_10) { (result) in
             guard let resultDict = result as? NSDictionary else { return }
+            if let registerUserModel = RegisterUserModel.deserialize(from: resultDict){
+                if registerUserModel.code == 0{
+                    // 保存token
+                    let token = registerUserModel.auth_token
+                    let userID = registerUserModel.user_id
+                    kUDS.set(token, forKey: "token")
+                    kUDS.set(userID, forKey: "user_id")
+                    kUDS.synchronize()
+                }
+            }
             debugLog(resultDict)
 //            if let recommendMainModel = RecommendMainModel.deserialize(from: resultDict){
 //                if recommendMainModel.code == 0{

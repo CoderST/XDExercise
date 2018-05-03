@@ -25,6 +25,52 @@ extension String{
         return resultSize;
     }
     
+
+    func sizeBoundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil) -> (att : NSMutableAttributedString,size : CGSize) {
+        let attritube = NSMutableAttributedString(string: self)
+        let range = NSRange(location: 0, length: attritube.length)
+        attritube.addAttributes([NSAttributedStringKey.font: font], range: range)
+        if lineSpacing != nil {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = lineSpacing!
+            attritube.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: range)
+        }
+        
+        let rect = attritube.boundingRect(with: constrainedSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+        var size = rect.size
+        
+        if let currentLineSpacing = lineSpacing {
+            // 文本的高度减去字体高度小于等于行间距，判断为当前只有1行
+            let spacing = size.height - font.lineHeight
+            if spacing <= currentLineSpacing && spacing > 0 {
+                size = CGSize(width: size.width, height: font.lineHeight)
+            }
+        }
+        
+        return (attritube,size)
+    }
+    
+    func sizeBoundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil, lines: Int) ->(att : NSMutableAttributedString,size : CGSize)  {
+        if lines < 0 {
+            return (NSMutableAttributedString(),.zero)
+        }
+        
+        let yuanzu = sizeBoundingRect(with: constrainedSize, font: font, lineSpacing: lineSpacing)
+        if lines == 0 {
+            return (yuanzu.att,yuanzu.size)
+        }
+        
+        let currentLineSpacing = (lineSpacing == nil) ? (font.lineHeight - font.pointSize) : lineSpacing!
+        let maximumHeight = font.lineHeight*CGFloat(lines) + currentLineSpacing*CGFloat(lines - 1)
+        let size = yuanzu.size
+        if size.height >= maximumHeight {
+            
+            return (yuanzu.att,CGSize(width: size.width, height: maximumHeight))
+        }
+        
+        return (yuanzu.att,size)
+    }
+    
 }
 
 // MARK:- 超过10000 显示

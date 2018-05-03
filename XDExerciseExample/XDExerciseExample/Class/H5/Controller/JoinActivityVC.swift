@@ -7,7 +7,7 @@
 //  进入活动
 
 import UIKit
-import WebViewJavascriptBridge
+//import WebViewJavascriptBridge
 class JoinActivityVC: UIViewController {
 
     var url : String = ""
@@ -36,7 +36,7 @@ class JoinActivityVC: UIViewController {
         
         WebViewJavascriptBridge.enableLogging()
 
-        _bridge = WebViewJavascriptBridge(forWebView: webView)
+//        _bridge = WebViewJavascriptBridge(for: webView)
         
         // 返回
         goBackAction("goBack")

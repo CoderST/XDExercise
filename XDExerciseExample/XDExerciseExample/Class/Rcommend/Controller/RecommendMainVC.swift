@@ -32,6 +32,13 @@ class RecommendMainVC: UIViewController {
         
     }()
     
+    // 签到抽奖
+    fileprivate lazy var qianDaoView : QianDaoView = {
+       let qianDaoView = QianDaoView()
+        
+        return qianDaoView
+    }()
+    
     // collectionView
     fileprivate lazy var collectionView : UICollectionView = {
         // 设置layout属性
@@ -78,6 +85,12 @@ extension RecommendMainVC{
         
         // 设置collectionView的内边距
         collectionView.contentInset = UIEdgeInsets(top: kSycleHei, left: 0, bottom: 0, right: 0)
+        
+        // 签到
+        view.addSubview(qianDaoView)
+        qianDaoView.delegate = self
+        let width : CGFloat = 40
+        qianDaoView.frame = CGRect(x: kScreenW - width - recommentMargin, y: 400, width: width, height: width)
     }
 }
 // MARK:- 网络请求
@@ -128,18 +141,18 @@ extension RecommendMainVC : UICollectionViewDelegateFlowLayout {
         return size
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let anchorFramelist = anchorviewModel.anchorFramelist
-//        let liveVC = STLiveAnchoViewController()
-//        //        liveVC.anchorFrame = anchorFrame
-//        // 1 判断数组是否有值
-//        if anchorFramelist.count == 0{
-//            return
-//        }
-//        // 2 传递数组和当前indexpath
-//        liveVC.showDatasAndIndexPath(anchorFramelist, indexPath)
-//        present(liveVC, animated: true, completion: nil)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let videoF = recommentVM.videoModelFrameArray[indexPath.item]
+        let video = videoF.videoModel
+        switch video.type {
+        case .product:
+            let productDetailVC = ProductDetailVC()
+            productDetailVC.videoFrame = videoF
+            navigationController?.pushViewController(productDetailVC, animated: true)
+        default:
+            debugLog("点击了日常")
+        }
+    }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if(velocity.y>0){
@@ -152,7 +165,7 @@ extension RecommendMainVC : UICollectionViewDelegateFlowLayout {
 }
 // MARK:- 私人代理
 // 轮播图点击事件
-extension RecommendMainVC : RecommendCycleViewDelegate,GifViewDelegate{
+extension RecommendMainVC : RecommendCycleViewDelegate,GifViewDelegate,QianDaoViewDelegate{
   
     func recommendCycleViewCycleScrollView(_ recommendCycleView: RecommendCycleView, didSelectItemAt index: Int) {
         guard let listArray = recommentVM.recommendMainModel?.list else { return }
@@ -162,6 +175,15 @@ extension RecommendMainVC : RecommendCycleViewDelegate,GifViewDelegate{
     
     func didGifView(_ gifView: GifView) {
         debugLog("点击了gif")
+    }
+    
+    func qianDaoView(_ qianDaoView: QianDaoView) {
+        let token = "NPr9OVVKOaHSeqOrNmziX6ckb1PGlgEuRnucNdO5KNvf6MU5dXMGhVZKjSU2OAql437vpGNMdNT1zvS%2BuWh6lw%3D%3D"
+        debugLog("hhhhhh")
+        // vc.url = [NSString stringWithFormat:@"%@%@%@.html?auth_token=%@&client=iOS",H5_URL,INTEGRAL,INTEGRAL_USER_SIGN,TOKEN];
+        let activityVC = MoreActivityVC()
+//        kNavigation().pushViewController(activityVC, animated: true)
+        present(activityVC, animated: true, completion: nil)
     }
 }
 

@@ -66,15 +66,7 @@ public class NetWork: NSObject {
         newParameters["device_identifier"] = "D9CF07CB6E094F91A5547B23EC6445AB"
         var sign : String = ""
         let signString = Utilities.dictionary(toString: newParameters) ?? ""
-        if TOKEN.count > 0{
-            newParameters["auth_token"] = TOKEN
-            let resultSign = "\(signString)\(time)\(USER_ID)xiu^*dou@2016#07#30~!bj99$&"
-            sign = Utilities.md5(resultSign)
-        }else{
-            
-            let resultSign = "\(signString)\(time)xiu^*dou@2016#07#30~!bj99$&"
-            sign = Utilities.md5(resultSign)
-        }
+
         newParameters["xsign"] = sign
         
         // sign
@@ -82,9 +74,9 @@ public class NetWork: NSObject {
         
         // 确定请求类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
-        print("URL = https://xdapi2.beta.xiudou.net/Interfaces/index")
-        print("parameters = \(newParameters)")
-        Alamofire.request("https://xdapi2.beta.xiudou.net/Interfaces/index", method: method, parameters: newParameters).responseJSON { (response) in
+//        print("parameters = \(newParameters)")
+        debugLog(newParameters)
+        Alamofire.request(API_URL, method: method, parameters: newParameters).responseJSON { (response) in
             guard let result = response.result.value else {
                 print("没有result")
                 return

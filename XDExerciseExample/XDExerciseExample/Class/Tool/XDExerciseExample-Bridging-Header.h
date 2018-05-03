@@ -137,3 +137,4 @@ _Pragma("clang diagnostic pop")\
 } while (0)
 
 #import "Utilities.h"
+#import "WebViewJavascriptBridge.h"

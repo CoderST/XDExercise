@@ -44,9 +44,18 @@ let recommentTopicFont = UIFont.systemFont(ofSize: 12.5)
 /// 推荐-评论
 let recommentCommentFont = UIFont.systemFont(ofSize: 12.5)
 
+/// 商品详情 - 标题
+let productDetailHeadTitleFont = UIFont.boldSystemFont(ofSize: 20)
+/// 商品详情 - 子标题
+let productDetailHeadSubTitleFont = UIFont.boldSystemFont(ofSize: 15)
+/// 商品详情 - 浏览
+let productDetailHeadBrowseFont = UIFont.boldSystemFont(ofSize: 10)
+
 // MARK:- 颜色
 let recommentCommentColor = UIColor(r: 0.2, g: 0.4, b: 0.6)
 let XDGlobalOrangeTextColor = UIColor.orange
+let productDetailHeadTitleColor = UIColor(hex: "#000000")
+let productDetailHeadSubTitleColor = UIColor(hex: "#333333")
 // MARK:- version
 let version_10 = "1.0"
 let version_285 = "2.8.5"

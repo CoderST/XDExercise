@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.5.1)
+  - FDFullscreenPopGesture (1.1)
   - FLAnimatedImage (1.0.12)
   - HandyJSON (4.0.0-beta.1)
   - Kingfisher (4.0.1)
@@ -13,7 +14,6 @@ PODS:
   - SSKeychain (1.4.1)
   - STRowLayout (1.0.1)
   - SVProgressHUD (2.2.1)
-  - WebViewJavascriptBridge (6.0.2)
   - XHLaunchAd (3.6.0):
     - FLAnimatedImage (~> 1.0.12)
   - YYAsyncLayer (1.0)
@@ -35,6 +35,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FDFullscreenPopGesture
   - HandyJSON (~> 4.0.0-beta.1)
   - Kingfisher
   - MJRefresh
@@ -43,7 +44,6 @@ DEPENDENCIES:
   - SSKeychain (~> 1.4.1)
   - STRowLayout (~> 1.0.1)
   - SVProgressHUD
-  - WebViewJavascriptBridge (~> 6.0)
   - XHLaunchAd
   - YYAsyncLayer (= 1.0)
   - YYCache (= 1.0.4)
@@ -57,6 +57,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
   Kingfisher: b771785e9461ed4b8686d40e7145f9e58100cb24
@@ -67,7 +68,6 @@ SPEC CHECKSUMS:
   SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
   STRowLayout: 319cabddac815c544670b148304c0b6bdb1c1e9d
   SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
-  WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
   XHLaunchAd: a4dd15b23a65d5351e92c307768a9a9bbd86111e
   YYAsyncLayer: df6b01ebc695c5f6b4c15dd5c23fa3e081eb25c0
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
@@ -78,6 +78,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: f99dcf47b25b9787a7809601e36ba82380313ac8
+PODFILE CHECKSUM: 310ee020667d2d3397bd6bdff4199c4c32dfa41e
 
 COCOAPODS: 1.3.1
