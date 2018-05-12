@@ -103,11 +103,16 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GPUImage/GPUImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/HappyDNS/HappyDNS.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Qiniu/Qiniu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
@@ -122,15 +127,20 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYKeyboardManager/YYKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYText/YYText.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ZFPlayer/ZFPlayer.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GPUImage/GPUImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/HappyDNS/HappyDNS.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Qiniu/Qiniu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
@@ -145,7 +155,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYKeyboardManager/YYKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYText/YYText.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ZFPlayer/ZFPlayer.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

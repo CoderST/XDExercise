@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        // 初始化Bugly
+//        Bugly.start(withAppId: BUGLY_APP_ID)
+        let session = AVAudioSession()
+        
+        do{
+            
+            try session.setCategory(AVAudioSessionCategoryPlayback, with: [])
+            
+            try session.setActive(true)
+            
+        }catch{
+            
+            
+            
+        }
+        
+
+        
         kUDS.removeObject(forKey: "token")
         kUDS.synchronize()
         // 设置住窗口
@@ -42,7 +60,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
+        let app = UIApplication.shared
+        var bgTask : UIBackgroundTaskIdentifier?
+        bgTask = app.beginBackgroundTask {
+            DispatchQueue.main.async(execute: {
+                if (bgTask != UIBackgroundTaskInvalid)
+                {
+                    bgTask = UIBackgroundTaskInvalid;
+                }
+            })
+        }
+        
+        DispatchQueue.global().async {
+            DispatchQueue.main.sync {
+                if (bgTask != UIBackgroundTaskInvalid)
+                {
+                    bgTask = UIBackgroundTaskInvalid;
+                }
+            }
+        }
     }
 
 
@@ -50,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     
-    func setupMainWindow() {
+    fileprivate func setupMainWindow() {
         // 1.创建窗口
         window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -66,5 +103,8 @@ extension AppDelegate {
         
         
     }
+    
+    
+    
 }
 

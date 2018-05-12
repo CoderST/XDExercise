@@ -12,7 +12,7 @@ protocol XDAttentionViewDelegate : class {
     func didSelectAttentionView(_ attentionView : XDAttentionView)
 }
 class XDAttentionView: UIView {
-    weak var delegate : XDAttentionViewDelegate?
+    weak var delegateAttention : XDAttentionViewDelegate?
     var attentionButtonTitle : String?{
         didSet{
             guard let attentionButtonTitle = attentionButtonTitle else { return }
@@ -50,6 +50,6 @@ class XDAttentionView: UIView {
 extension XDAttentionView{
 
     @objc fileprivate func tapAction(_ button : UIButton){
-        delegate?.didSelectAttentionView(self)
+        delegateAttention?.didSelectAttentionView(self)
     }
 }

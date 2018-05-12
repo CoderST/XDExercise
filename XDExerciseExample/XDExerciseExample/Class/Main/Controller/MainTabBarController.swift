@@ -13,7 +13,7 @@ class MainTabBarController: UITabBarController {
     // MARK:- 懒加载
     fileprivate lazy var customTabBar : STTabbar = {[weak self] in
         let customTabBar = STTabbar()
-        customTabBar.delegate = self
+        customTabBar.delegateTabbar = self
         
 //        customTabBar.frame = self!.tabBar.bounds
         customTabBar.frame = CGRect(x: 0, y: 0, width: kScreenW, height: kTabbarH)

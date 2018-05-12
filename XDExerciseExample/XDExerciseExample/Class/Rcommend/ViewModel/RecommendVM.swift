@@ -27,8 +27,7 @@ extension RecommendVM{
             "current_page" : "1",
             "item_count" : "\(item_count)"
         ]
-        
-        NetWork.requestData(.post, URLString: GET_HOME_RECOMMEND_LIST, model: INDEX_URL, parameters: parameters, version: version_285) { (result) in
+        NetWork.requestData(.post, false, URLString: GET_HOME_RECOMMEND_LIST, model: INDEX_URL, parameters: parameters, version: version_285) { (result) in
 //            debugLog(result)
             guard let resultDict = result as? NSDictionary else { return }
 //            guard let resultDIC = resultDict["list"] as? [String : Any] else { return }
@@ -47,9 +46,13 @@ extension RecommendVM{
                     
                     /// 处理frame数据
                     guard let list = recommendMainModel.list else { return }
-                    for video in list.video{
-                        let videoF = VideoModelFrame(video)
-                        self.videoModelFrameArray.append(videoF)
+                    for (index, video) in list.video.enumerated(){
+                        if index == 0{
+                            let videoF = VideoModelFrame(video)
+                            self.videoModelFrameArray.append(videoF)
+                        }
+                        
+                        
                     }
 //
                     successCallBack()

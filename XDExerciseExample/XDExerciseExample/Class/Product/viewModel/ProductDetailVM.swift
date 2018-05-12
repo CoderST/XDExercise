@@ -13,8 +13,8 @@ class ProductDetailVM: NSObject {
     var buyShowModel : BuyShowModel?
     var commentModel : CommentModel?
     
-    var groupDicts : [[String : Any]] = [[String : Any]]()
-    var section : Int = 0
+    var buyCommentModelGroup : [ProductDetailBuyCommentModel] = [ProductDetailBuyCommentModel]()
+//    var section : Int = 0
 }
 
 extension ProductDetailVM{
@@ -37,6 +37,8 @@ extension ProductDetailVM{
                     let productModelFrame = ProductModelFrame(productModel)
                     self.productModelFrame = productModelFrame
                     successCallBack()
+                }else{
+                    debugLog(productModel.code)
                 }
                 
                 
@@ -46,8 +48,9 @@ extension ProductDetailVM{
 }
 
 extension ProductDetailVM {
-    /// 加载买家秀
+    /// 加载买家秀和评论(第一页)
     func loadProductDetailCellDatas(_ product_id : String,  successCallBack : @escaping ()->(), stateCallBack : @escaping (_ message : String)->(), failedCallBack : @escaping ()->()){
+        self.buyCommentModelGroup.removeAll()
         let group = DispatchGroup()
         let parameters : [String : Any] = [
             "product_id" : product_id,
@@ -107,18 +110,29 @@ extension ProductDetailVM {
             //            self.anchorGroups.insert(self.bigDataGroup, at: 0)
             //            finishCallBack()
             if self.buyShowModel != nil && self.buyShowModel!.list.count > 0{
-                let buyShowModelList = self.buyShowModel!.list
-                var buyShowModelListDict = [String : Any]()
-                buyShowModelListDict["buyShowModelList"] = buyShowModelList
-                self.groupDicts.append(buyShowModelListDict)
-                self.section = self.section + 1
+                let productDetailSCModel = ProductDetailBuyCommentModel()
+                productDetailSCModel.modelList = self.buyShowModel!.list
+                productDetailSCModel.headTitle = "买家秀\(self.buyShowModel?.buyer_show_total ?? 0)"
+                self.buyCommentModelGroup.append(productDetailSCModel)
             }
             if self.commentModel != nil && self.commentModel!.list.count > 0{
-                let commentModelList = self.commentModel!.list
-                var commentModelListDict = [String : Any]()
-                commentModelListDict["commentModelList"] = commentModelList
-                self.groupDicts.append(commentModelListDict)
-                self.section = self.section + 1
+                /// 新鲜
+                let refreshCommentModelList = self.commentModel!.list
+                if refreshCommentModelList.count > 0{
+                    let productDetailSCModel = ProductDetailBuyCommentModel()
+                    productDetailSCModel.modelList = refreshCommentModelList
+                    productDetailSCModel.headTitle = "新鲜评论\(self.commentModel?.total ?? 0)"
+                    self.buyCommentModelGroup.append(productDetailSCModel)
+                }
+                
+                /// 热门
+                let hotCommentModelList = self.commentModel!.hot_list
+                if hotCommentModelList.count > 0{
+                    let productDetailSCModel = ProductDetailBuyCommentModel()
+                    productDetailSCModel.modelList = hotCommentModelList
+                    productDetailSCModel.headTitle = "热门评论\(self.commentModel?.hot_total ?? 0)"
+                    self.buyCommentModelGroup.append(productDetailSCModel)
+                }
             }
             successCallBack()
         }

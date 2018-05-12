@@ -10,13 +10,12 @@ import UIKit
 import Alamofire
 import ReachabilitySwift
 import CoreTelephony
-import CommonCrypto
+//import CommonCrypto
 public enum MethodType {
     
     case get
     case post
 }
-
 
 enum NetWorkStates {
     
@@ -30,7 +29,16 @@ let reachability = Reachability()!
 
 
 public class NetWork: NSObject {
-    public class func requestData(_ type : MethodType, URLString : String, model : String, parameters:[String : Any]? = nil,version : String? = "1.8.0",finishCallBack : @escaping (_ result : Any) -> ()){
+    /*
+     * type : post or get
+     * isCacheHttpDatas 默认不缓存false  true缓存
+     * URLString :
+     * model :
+     * parameters : 传递的参数
+     * version : 版本号
+     * finishCallBack 完成回调
+     */
+    public class func requestData(_ type : MethodType, _ isCacheHttpDatas : Bool = false, URLString : String, model : String, parameters:[String : Any]? = nil,version : String? = "1.8.0",finishCallBack : @escaping (_ result : Any) -> ()){
         
         var newParameters : [String : Any] = [String : Any]()
         if parameters != nil {
@@ -66,7 +74,15 @@ public class NetWork: NSObject {
         newParameters["device_identifier"] = "D9CF07CB6E094F91A5547B23EC6445AB"
         var sign : String = ""
         let signString = Utilities.dictionary(toString: newParameters) ?? ""
-
+        if kTOKEN.count > 0{
+            newParameters["auth_token"] = kTOKEN
+            let resultSign = "\(signString)\(time)\(kUSER_ID)xiu^*dou@2016#07#30~!bj99$&"
+            sign = Utilities.md5(resultSign)
+        }else{
+            
+            let resultSign = "\(signString)\(time)xiu^*dou@2016#07#30~!bj99$&"
+            sign = Utilities.md5(resultSign)
+        }
         newParameters["xsign"] = sign
         
         // sign
@@ -74,15 +90,18 @@ public class NetWork: NSObject {
         
         // 确定请求类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
-//        print("parameters = \(newParameters)")
         debugLog(newParameters)
+
+        // 判断是否需要缓存网络请求
+        isCacheHttpDatasPrivate(isCacheHttpDatas, newParameters, finishCallBack: finishCallBack)
+        
+        // 请求网络数据
         Alamofire.request(API_URL, method: method, parameters: newParameters).responseJSON { (response) in
             guard let result = response.result.value else {
                 print("没有result")
                 return
             }
-            
-            
+            NetWorkCache.setHttpCache(httpData: result, API_URL, newParameters)
             finishCallBack(result)
         }
         
@@ -114,18 +133,18 @@ public class NetWork: NSObject {
         return ""
     }
     
-    class func md5String(str:String) -> String{
-        let cStr = str.cString(using: String.Encoding.utf8);
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 16)
-        //        let buffer = "0123456789abcdef"
-        CC_MD5(cStr!,(CC_LONG)(strlen(cStr!)), buffer)
-        let md5String = NSMutableString();
-        for i in 0 ..< 16{
-            md5String.appendFormat("%02x", buffer[i])
-        }
-        free(buffer)
-        return md5String as String
-    }
+//    class func md5String(str:String) -> String{
+//        let cStr = str.cString(using: String.Encoding.utf8);
+//        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 16)
+//        //        let buffer = "0123456789abcdef"
+//        CC_MD5(cStr!,(CC_LONG)(strlen(cStr!)), buffer)
+//        let md5String = NSMutableString();
+//        for i in 0 ..< 16{
+//            md5String.appendFormat("%02x", buffer[i])
+//        }
+//        free(buffer)
+//        return md5String as String
+//    }
     
     class func getCarrierName()->String? {
         let telephonyInfo = CTTelephonyNetworkInfo()
@@ -178,5 +197,19 @@ extension NetWork {
         NotificationCenter.default.removeObserver(self,
                                                   name: ReachabilityChangedNotification,
                                                   object: reachability)
+    }
+}
+
+extension NetWork {
+    class fileprivate func isCacheHttpDatasPrivate(_ isCacheHttpDatas : Bool, _ newParameters : [String : Any], finishCallBack : @escaping (_ result : Any) -> ()){
+        if isCacheHttpDatas == true{
+            // 1 读取缓存
+            let cacheResponse = NetWorkCache.httpCacheForURL(API_URL, newParameters)
+            if cacheResponse.keys.count > 0 {
+                finishCallBack(cacheResponse)
+            }else{
+                debugLog("没有缓存")
+            }
+        }
     }
 }

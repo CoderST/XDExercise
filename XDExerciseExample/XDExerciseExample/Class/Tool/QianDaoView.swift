@@ -12,7 +12,7 @@ protocol QianDaoViewDelegate : class {
 }
 class QianDaoView: UIView {
 
-    weak var delegate : QianDaoViewDelegate?
+    weak var delegateQianDao : QianDaoViewDelegate?
     fileprivate lazy var titleLabel : UILabel = {
        let titleLabel = UILabel()
         titleLabel.clipsToBounds = true
@@ -54,6 +54,6 @@ extension  QianDaoView{
 
 extension QianDaoView {
     @objc func tapAction(){
-        delegate?.qianDaoView(self)
+        delegateQianDao?.qianDaoView(self)
     }
 }

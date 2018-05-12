@@ -9,6 +9,7 @@
 import UIKit
 import FDFullscreenPopGesture
 fileprivate let ProductDetailCellIdentifier = "ProductDetailCellIdentifier"
+fileprivate let ProductDetailReusableViewIdentifier = "ProductDetailReusableViewIdentifier"
 enum ProductDetailVC_Type:String{
     case normal_product = "0" // 正常商品
     case spick_product = "1" // 秒杀商品
@@ -28,13 +29,14 @@ class ProductDetailVC: UIViewController {
         // 默认值(如果改动可以添加代理方法)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        layout.headerReferenceSize = CGSize(width: kScreenW, height: 0)
+        layout.headerReferenceSize = CGSize(width: kScreenW, height: 20)
         // 创建UICollectionView
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: kScreenH), collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         collectionView.register(ProductDetailCell.self, forCellWithReuseIdentifier: ProductDetailCellIdentifier)
+        collectionView.register(ProductDetailReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ProductDetailReusableViewIdentifier)
         // 设置数据源
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -118,19 +120,13 @@ extension ProductDetailVC{
 extension ProductDetailVC : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
-        return productDeatilVM.groupDicts.count
+        return productDeatilVM.buyCommentModelGroup.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
-        let groupDict = productDeatilVM.groupDicts[section]
-        if let buyShowModelList = groupDict["buyShowModelList"] as?  [BuyShowList]{
-            return buyShowModelList.count
-        }
-        
-        if let commentModelList = groupDict["commentModelList"] as?  [CommentList]{
-            return commentModelList.count
-        }
-        return 0
+        let buyCommentModel = productDeatilVM.buyCommentModelGroup[section]
+        let anyModel = buyCommentModel.modelList
+        return anyModel?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -143,5 +139,16 @@ extension ProductDetailVC : UICollectionViewDataSource, UICollectionViewDelegate
         
         let size = CGSize(width: kScreenW, height: 50)
         return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ProductDetailReusableViewIdentifier, for: indexPath) as! ProductDetailReusableView
+        // 获取数据传递
+        let buyCommentModel = productDeatilVM.buyCommentModelGroup[indexPath.section]
+        view.buyCommentModel = buyCommentModel
+//        view.titleString = delegate?.stCollectionHeadInSection?(self, at: indexPath)
+        
+        return view
     }
 }

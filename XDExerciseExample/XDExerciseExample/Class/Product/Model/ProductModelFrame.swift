@@ -32,8 +32,10 @@ class ProductModelFrame: NSObject {
     var couponViewFrame : CGRect = .zero
     /// 静态view 24小时发货 正品保证图片
     var staticViewFrame : CGRect = .zero
+    /// 灰色底边
+    var grayBottomViewFrame : CGRect = .zero
     /// headView高度
-    var headViewHeight : CGFloat = 0
+    var headViewHeight : CGFloat = kScreenW
     
     // MARK:- 数据
     /// 子话题尺寸数组
@@ -49,7 +51,7 @@ class ProductModelFrame: NSObject {
     init(_ productModel : ProductModel) {
         self.productModel = productModel
         super.init()
-        
+        headViewHeight = 0
         /// 视频F
         videoFrame = CGRect(x: 0, y: 0, width: kScreenW, height: kScreenW)
         /// 金额 包邮(是否)  想要(是否)
@@ -82,7 +84,8 @@ class ProductModelFrame: NSObject {
         let height = 180 / 750 * kScreenW
         staticViewFrame = CGRect(x: 0, y: headViewHeight, width: kScreenW, height: height)
         
-        headViewHeight = staticViewFrame.maxY + 10
+        grayBottomViewFrame = CGRect(x: 0, y: staticViewFrame.maxY, width: kScreenW, height: 10)
+        headViewHeight = grayBottomViewFrame.maxY
         
         
     }

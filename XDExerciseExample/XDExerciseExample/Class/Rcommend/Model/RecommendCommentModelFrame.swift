@@ -40,51 +40,16 @@ extension RecommendCommentModelFrame{
     func setupUserComment(_ comment : HotDict)->NSAttributedString?{
         let fromUser = comment.user_info
         let toUser = comment.target_user_info
+        let textComment = "[cool]哈哈你个[kuxiaobude]傻逼"
             if toUser.nick_name.count > 0{
                 // 有回复
-                let text = "\(fromUser.nick_name)回复\(toUser.nick_name): \(comment.content)"
-                let textString = text as NSString
-                //                var textString = text as NSString
-                let mutableAttributedString = NSMutableAttributedString(string: textString as String)
-                mutableAttributedString.yy_font = recommentCommentFont
-                mutableAttributedString.yy_color = recommentCommentColor
-                mutableAttributedString.yy_lineSpacing = 10
-                let fromUserRange = NSMakeRange(0, fromUser.nick_name.count)
-                let bacColor = UIColor(white: 0, alpha: 0.220)
-                let fromUserHighlight = YYTextHighlight(backgroundColor: bacColor)
-                fromUserHighlight.userInfo = [XDCommentUserKey : fromUser]
-                
-                mutableAttributedString.yy_setTextHighlight(fromUserHighlight, range: fromUserRange)
-                // 设置昵称颜色
-                mutableAttributedString.yy_setColor(XDGlobalOrangeTextColor, range: fromUserRange)
-                
-                let toUserRange = textString.range(of: "\(toUser.nick_name)")
-                // 文本高亮模型
-                let toUserHighlight = YYTextHighlight(backgroundColor: bacColor)
-                toUserHighlight.userInfo = [XDCommentUserKey : toUser]
-                mutableAttributedString.yy_setTextHighlight(toUserHighlight, range: toUserRange)
-                // 设置昵称颜色
-                mutableAttributedString.yy_setColor(XDGlobalOrangeTextColor, range: toUserRange)
-                attributedString = mutableAttributedString
+                 let mutableAttributedString = EmojiToolModel.emojiFromUserNameToUserName(fromUser.nick_name, toUser.nick_name, textComment, 6)
+               attributedString = mutableAttributedString
                 return mutableAttributedString
             }else{
                  // 没有回复
                 // 1 拼接字符
-                let text = "\(fromUser.nick_name): \(comment.content)"
-                let textString = text as NSString
-                // 2 创建属性字符串
-                let mutableAttributedString = NSMutableAttributedString(string: textString as String)
-                mutableAttributedString.yy_font = recommentCommentFont
-                mutableAttributedString.yy_color = recommentCommentColor
-                mutableAttributedString.yy_lineSpacing = 10
-                //3 获取fromuser的尺寸
-                let fromUserRange = NSMakeRange(0, fromUser.nick_name.count)
-                let bacColor = UIColor(white: 0, alpha: 0.220)
-                let fromUserHighlight = YYTextHighlight(backgroundColor: bacColor)
-                fromUserHighlight.userInfo = [XDCommentUserKey : fromUser]
-                mutableAttributedString.yy_setTextHighlight(fromUserHighlight, range: fromUserRange)
-                // 设置昵称颜色
-                mutableAttributedString.yy_setColor(XDGlobalOrangeTextColor, range: fromUserRange)
+               let mutableAttributedString = EmojiToolModel.emojiFromUserNameToUserName(fromUser.nick_name, "", textComment, 6)
                 attributedString = mutableAttributedString
                 return mutableAttributedString
             }

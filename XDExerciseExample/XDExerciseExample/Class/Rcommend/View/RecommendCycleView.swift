@@ -13,7 +13,7 @@ protocol RecommendCycleViewDelegate : class{
 }
 class RecommendCycleView: UIView {
 
-    weak var delegate : RecommendCycleViewDelegate?
+    weak var delegateCycle : RecommendCycleViewDelegate?
     
     fileprivate lazy var cycleScrollView : SDCycleScrollView = {
         let cycleScrollView = SDCycleScrollView()
@@ -51,7 +51,7 @@ class RecommendCycleView: UIView {
 extension RecommendCycleView : SDCycleScrollViewDelegate{
     /** 点击图片回调 */
     func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAt index: Int) {
-        delegate?.recommendCycleViewCycleScrollView(self, didSelectItemAt: index)
+        delegateCycle?.recommendCycleViewCycleScrollView(self, didSelectItemAt: index)
     }
     
     

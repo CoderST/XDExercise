@@ -25,6 +25,13 @@ extension String{
         return resultSize;
     }
     
+    func sizeWithFont(_ font : UIFont, _ attributes : [NSAttributedStringKey : Any]) -> CGSize {
+//        let attributes = [NSAttributedStringKey.font: font]
+        let option = NSStringDrawingOptions.usesLineFragmentOrigin
+        let size = CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT))
+        let resultSize = self.boundingRect(with: size, options: option, attributes: attributes, context: nil).size
+        return resultSize;
+    }
 
     func sizeBoundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil) -> (att : NSMutableAttributedString,size : CGSize) {
         let attritube = NSMutableAttributedString(string: self)

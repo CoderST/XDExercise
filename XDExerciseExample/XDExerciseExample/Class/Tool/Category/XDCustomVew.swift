@@ -13,7 +13,7 @@ protocol XDCustomVewDelegate : class {
 fileprivate let titleLabelFont = UIFont.systemFont(ofSize: 10)
 class XDCustomVew: UIView {
 
-    var delegate : XDCustomVewDelegate?
+    var delegateCus : XDCustomVewDelegate?
     
     fileprivate lazy var imageView : UIImageView = {
         let imageView = UIImageView()
@@ -64,6 +64,6 @@ extension XDCustomVew {
 
 extension XDCustomVew {
     @objc func tapAction(){
-        delegate?.didCustomVew(self)
+        delegateCus?.didCustomVew(self)
     }
 }

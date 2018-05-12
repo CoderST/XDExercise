@@ -30,7 +30,11 @@ class RecommendCell: UICollectionViewCell {
     fileprivate lazy var attentionView : XDAttentionView = XDAttentionView()
     
     /// 视频
-    fileprivate lazy var recommentVideoView : RecommentVideoView = RecommentVideoView()
+    fileprivate lazy var recommentVideoView : RecommentVideoView = {
+        let recommentVideoView = RecommentVideoView()
+        recommentVideoView.tag = 2008
+        return recommentVideoView
+    } ()
     fileprivate lazy var videoCoverImageView : UIImageView = {
        let videoCoverImageView = UIImageView()
         videoCoverImageView.contentMode = .scaleAspectFill
@@ -145,12 +149,13 @@ extension RecommendCell{
         userTitleLable.text = videoModelFrame.userTitle
         userSubTitleLable.text = videoModelFrame.userSubTitle
         if let url = URL(string: videoModelFrame.videoCoverImageUrl){
-            videoCoverImageView.kf.setImage(with: url, placeholder: UIImage(named: "avatar_default"), options: nil, progressBlock: nil, completionHandler: nil)
+//            videoCoverImageView.kf.setImage(with: url, placeholder: UIImage(named: "avatar_default"), options: nil, progressBlock: nil, completionHandler: nil)
         }
         let mediaType = videoModelFrame.videoModel.media_type
         switch mediaType {
         case .video:
             debugLog("1")
+            recommentVideoView.videoModelFrame = videoModelFrame
         default:
             debugLog("2")
         }
@@ -169,7 +174,7 @@ extension RecommendCell : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecommendCommentCellIdentifier, for: indexPath) as! RecommendCommentTableCell
         let commentFrame = videoModelFrame?.commentFrames[indexPath.row]
-        cell.delegate = self
+        cell.delegateComment = self
         cell.commentFrame = commentFrame
         return cell
     }

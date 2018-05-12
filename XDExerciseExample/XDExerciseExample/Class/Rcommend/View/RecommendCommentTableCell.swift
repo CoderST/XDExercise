@@ -13,7 +13,7 @@ protocol RecommendCommentTableCellDelegate : class {
 }
 class RecommendCommentTableCell: UITableViewCell {
 
-    weak var delegate : RecommendCommentTableCellDelegate?
+    weak var delegateComment : RecommendCommentTableCellDelegate?
     fileprivate lazy var contentLabel : YYLabel = YYLabel()
     var commentFrame : RecommendCommentModelFrame?{
         
@@ -54,7 +54,7 @@ extension RecommendCommentTableCell{
             // YYTextHighlight *highlight = [containerView valueForKeyPath:@"_highlight"];
             let highlight = containerView.value(forKey: "_highlight") as? YYTextHighlight
             if let userInfo = highlight?.userInfo![XDCommentUserKey] as? UserInfor{
-                self.delegate?.recommendCommentTableCell(self, userInfo)
+                self.delegateComment?.recommendCommentTableCell(self, userInfo)
             }
             
         }

@@ -17,7 +17,7 @@ protocol STTabbarDelegate : class{
 class STTabbar: UIView {
     
     // MARK:- 变量
-    weak var delegate : STTabbarDelegate?
+    weak var delegateTabbar : STTabbarDelegate?
     
     fileprivate var selectedButton : STTabbarButton?
     
@@ -58,7 +58,7 @@ class STTabbar: UIView {
 
     @objc fileprivate func plusButtonAction(_ button : STTabbarButton){
 //        print(plusButtonAction)
-        delegate?.didSelectplusButton(self, plusButton: button)
+        delegateTabbar?.didSelectplusButton(self, plusButton: button)
     }
 
     
@@ -120,7 +120,7 @@ extension STTabbar {
     
     @objc fileprivate func tabbarButtonAction(_ button : STTabbarButton){
         if button.tag == selectedButton?.tag { return }
-        delegate?.didSelectButtonAtIndex(self, index: button.tag)
+        delegateTabbar?.didSelectButtonAtIndex(self, index: button.tag)
         selectedButton?.isSelected = false
         button.isSelected = true;
         selectedButton = button;

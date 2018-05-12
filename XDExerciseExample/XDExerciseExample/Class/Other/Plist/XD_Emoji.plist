@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>[cool]</key>
+	<string>biaoqing_cool</string>
+	<key>[guzhang]</key>
+	<string>biaoqing_guzhang</string>
+	<key>[huaixiao]</key>
+	<string>biaoqing_huaixiao</string>
+	<key>[kuxiaobude]</key>
+	<string>biaoqing_kuxiaobude</string>
+	<key>[se]</key>
+	<string>biaoqing_se</string>
+	<key>[shuaidao]</key>
+	<string>biaoqing_shuaidao</string>
+	<key>[yun]</key>
+	<string>biaoqing_yun</string>
+</dict>
+</plist>

@@ -11,6 +11,7 @@ import UIKit
 let API_URL = "https://xdapi2.beta.xiudou.net/Interfaces/index"
 let H5_URL = "https://m.beta.xiudou.net"
 
+let BUGLY_APP_ID = "52657a0742"
 let XD_IOS = "XD_IOS"
 let XD_UUID_IDENTIFIER = "XD_UUID_IDENTIFIER"
 let kUDS = UserDefaults.standard

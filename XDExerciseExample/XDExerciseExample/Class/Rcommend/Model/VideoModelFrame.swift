@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import STRowLayout
+//import STRowLayout
 /// 用户高度
 let userHeight : CGFloat = 60
 /// 用户头像大小
@@ -79,6 +79,11 @@ class VideoModelFrame: NSObject {
     var bottomBarF : CGRect = .zero
     /// cell高度
     var cellHeight : CGFloat = 0
+    
+    // MARK:- 临时记录属性
+    weak var collectionView : UICollectionView?
+    var indexPathItem : Int = 0
+    
     
      init(_ videoModel : Video) {
         self.videoModel = videoModel
@@ -189,8 +194,13 @@ extension VideoModelFrame{
         let mediaType = videoModel.media_type
         switch mediaType {
         case .video:
-            videoUrl = videoModel.video_url
             debugLog("1")
+            videoUrl = videoModel.video_url
+            debugLog(videoModel.video_url)
+            debugLog(videoModel.video_url_https)
+            debugLog(videoModel.video_url_stream)
+            
+            
         default:
             videoUrl = ""
             debugLog("2")

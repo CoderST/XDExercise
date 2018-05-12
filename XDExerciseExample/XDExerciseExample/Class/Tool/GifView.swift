@@ -17,7 +17,7 @@ class GifView: UIView {
         gifImageView.isUserInteractionEnabled = true
         return gifImageView
     } ()
-    weak var delegate : GifViewDelegate?
+    weak var delegateGif : GifViewDelegate?
     var imageName : String?{
         didSet{
             guard let imageName = imageName else { return }
@@ -51,7 +51,7 @@ class GifView: UIView {
 extension GifView{
     
     @objc func tapAction(){
-        delegate?.didGifView(self)
+        delegateGif?.didGifView(self)
     }
     
     func removeAll(){

@@ -45,6 +45,12 @@ class ProductDetailHeadView: UIView {
     fileprivate lazy var couponView : CouponView = CouponView()
     /// 静态view 24小时发货 正品保证图片
     fileprivate lazy var staticView : ProductStaticView = ProductStaticView()
+    /// 灰色地板
+    fileprivate lazy var grayBottomView : UIView = {
+       let grayBottomView = UIView()
+        grayBottomView.backgroundColor = .gray
+        return grayBottomView
+    }()
     
     fileprivate lazy var imageGroup : [String] = [String]()
     
@@ -79,6 +85,7 @@ class ProductDetailHeadView: UIView {
         addSubview(productDetailUserInforView)
         addSubview(couponView)
         addSubview(staticView)
+        addSubview(grayBottomView)
     }
     
     fileprivate func setupCycleScrollView(){
@@ -114,6 +121,7 @@ extension ProductDetailHeadView {
         couponView.frame = productModelFrame.couponViewFrame
         shareLoveMoreView.frame = productModelFrame.shareLoveMoreViewFrame
         staticView.frame = productModelFrame.staticViewFrame
+        grayBottomView.frame = productModelFrame.grayBottomViewFrame
     }
     
     fileprivate func setupCycleScrollViewImageGroup(_ productModelFrame : ProductModelFrame){

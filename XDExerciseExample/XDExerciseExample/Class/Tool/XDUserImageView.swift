@@ -14,7 +14,7 @@ protocol XDUserImageViewDelegate : class {
 fileprivate let scale : CGFloat = 0.8
 class XDUserImageView: UIView {
     /// 代理
-    weak var delegate : XDUserImageViewDelegate?
+    weak var delegateUserImageView : XDUserImageViewDelegate?
     /// 头像
     fileprivate lazy var userAvatarView : UIImageView = UIImageView()
     /// 等级
@@ -85,6 +85,6 @@ extension XDUserImageView{
 extension XDUserImageView{
     @objc fileprivate func tapAction(_ tap : UITapGestureRecognizer){
         print("---")
-        delegate?.didSelectUserImageView(self)
+        delegateUserImageView?.didSelectUserImageView(self)
     }
 }

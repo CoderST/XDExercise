@@ -17,7 +17,7 @@ import UIKit
 fileprivate let TopicCollectionViewCellIdentifier = "TopicCollectionViewCellIdentifier"
 class TopicView: UIView {
 
-    weak var delegate : TopicViewDelegate?
+    weak var delegateTopic : TopicViewDelegate?
     // collectionView
     fileprivate lazy var collectionView : UICollectionView = {[weak self] in
         // 设置layout属性
@@ -56,7 +56,7 @@ class TopicView: UIView {
 
 extension TopicView : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = delegate?.topicCount(self) ?? 0
+        let count = delegateTopic?.topicCount(self) ?? 0
         return count
     }
     
@@ -70,13 +70,13 @@ extension TopicView : UICollectionViewDataSource{
 extension TopicView : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = delegate?.topicSize(self) ?? CGSize.zero
+        let size = delegateTopic?.topicSize(self) ?? CGSize.zero
         return size
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.topicView!(self, didSelectItemAt: indexPath)
+        delegateTopic?.topicView!(self, didSelectItemAt: indexPath)
     }
 }
 

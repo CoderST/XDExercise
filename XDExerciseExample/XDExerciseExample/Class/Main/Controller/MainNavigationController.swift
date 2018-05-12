@@ -20,7 +20,7 @@ class MainNavigationController: UINavigationController {
          */
         
         
-        addPopGesture()
+//        addPopGesture()
         
         setupNavigation()
 
