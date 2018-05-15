@@ -195,10 +195,9 @@ extension VideoModelFrame{
         switch mediaType {
         case .video:
             debugLog("1")
-            videoUrl = videoModel.video_url
-            debugLog(videoModel.video_url)
-            debugLog(videoModel.video_url_https)
-            debugLog(videoModel.video_url_stream)
+//            let videoStr = videoModel.video_url_stream
+            videoUrl = videoModel.video_url_stream
+            debugLog("videoUrl == \(videoModel.video_url_stream)")
             
             
         default:

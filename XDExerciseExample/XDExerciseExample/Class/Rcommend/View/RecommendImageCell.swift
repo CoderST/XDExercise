@@ -1,20 +1,14 @@
 //
-//  RecommendCell.swift
+//  RecommendImageCell.swift
 //  XDExerciseExample
 //
-//  Created by xiudou on 2018/4/14.
+//  Created by xiudou on 2018/5/12.
 //  Copyright © 2018年 CoderST. All rights reserved.
 //
 
 import UIKit
-protocol RecommendCellDelegate : class {
-    func didPlayClickButton(_ recommendCell : RecommendCell , _ indexPath : IndexPath)
-}
-class RecommendCell: UICollectionViewCell {
-    
-    weak var delegateRecommendCell : RecommendCellDelegate?
-    
-    var indexPathCell : IndexPath?
+
+class RecommendImageCell: UICollectionViewCell {
     
     fileprivate lazy var recommentUserView : RecommentUserView = RecommentUserView()
     /// 用户头像
@@ -37,7 +31,7 @@ class RecommendCell: UICollectionViewCell {
     fileprivate lazy var attentionView : XDAttentionView = XDAttentionView()
     
     /// 视频
-    lazy var recommentVideoView : RecommentVideoView = {
+    fileprivate lazy var recommentVideoView : RecommentVideoView = {
         let recommentVideoView = RecommentVideoView()
         recommentVideoView.tag = 2008
         return recommentVideoView
@@ -46,7 +40,7 @@ class RecommendCell: UICollectionViewCell {
     fileprivate lazy var recommendNormalOrProduct : RecommendNormalOrProduct = RecommendNormalOrProduct()
     /// 价格
     fileprivate lazy var priceLabel : UILabel = {
-       let priceLabel = UILabel()
+        let priceLabel = UILabel()
         priceLabel.backgroundColor = .yellow
         priceLabel.font = recommentPriceFont
         return priceLabel
@@ -63,7 +57,7 @@ class RecommendCell: UICollectionViewCell {
     
     /// 评论
     fileprivate lazy var commentTableView : RecommendCommentTableView = {
-       let recommendCommentTableVie = RecommendCommentTableView()
+        let recommendCommentTableVie = RecommendCommentTableView()
         recommendCommentTableVie.dataSource = self
         recommendCommentTableVie.delegate = self
         recommendCommentTableVie.isScrollEnabled = false
@@ -79,8 +73,6 @@ class RecommendCell: UICollectionViewCell {
     var videoModelFrame : VideoModelFrame?{
         didSet{
             guard let videoModelFrame = videoModelFrame else { return }
-            /// 强制布局
-            layoutIfNeeded()
             setupFrame(videoModelFrame)
             setupData(videoModelFrame)
         }
@@ -95,8 +87,7 @@ class RecommendCell: UICollectionViewCell {
         recommentUserView.addSubview(attentionView)
         
         contentView.addSubview(recommentVideoView)
-//        recommentVideoView.addSubview(videoCoverImageView)
-        recommentVideoView.delegateVideoView = self
+        //        recommentVideoView.addSubview(videoCoverImageView)
         
         contentView.addSubview(recommendNormalOrProduct)
         recommendNormalOrProduct.addSubview(priceLabel)
@@ -105,14 +96,12 @@ class RecommendCell: UICollectionViewCell {
         // 话题在赋值加
         
         // 评论
-//        contentView.addSubview(commentTableView)
+        contentView.addSubview(commentTableView)
         commentTableView.backgroundColor = UIColor.purple
         
         // bar
         contentView.addSubview(recommendCellBottomBarView)
         
-        
-
     }
     
     
@@ -122,7 +111,7 @@ class RecommendCell: UICollectionViewCell {
     }
 }
 
-extension RecommendCell{
+extension RecommendImageCell{
     fileprivate func setupFrame(_ videoModelFrame : VideoModelFrame){
         
         recommentUserView.frame = videoModelFrame.userF
@@ -132,7 +121,7 @@ extension RecommendCell{
         attentionView.frame = videoModelFrame.attentionF
         
         recommentVideoView.frame = videoModelFrame.videoF
-//        videoCoverImageView.frame = recommentVideoView.bounds
+        //        videoCoverImageView.frame = recommentVideoView.bounds
         
         recommendNormalOrProduct.frame = videoModelFrame.normalOrProductF
         priceLabel.frame = videoModelFrame.pricesF
@@ -154,10 +143,8 @@ extension RecommendCell{
         userImageView.user = videoModelFrame.videoModel.user
         userTitleLable.text = videoModelFrame.userTitle
         userSubTitleLable.text = videoModelFrame.userSubTitle
-
-        recommentVideoView.videoModelFrame = videoModelFrame
         
-//        debugLog("indexpath = \(indexPathCell?.item)")
+        recommentVideoView.videoModelFrame = videoModelFrame
         let mediaType = videoModelFrame.videoModel.media_type
         switch mediaType {
         case .video:
@@ -169,12 +156,11 @@ extension RecommendCell{
         }
         priceLabel.text = videoModelFrame.priceString
         titleLabel.text = videoModelFrame.title
-        
     }
 }
 
 // MARK:- UITableViewDataSource,UITableViewDelegate
-extension RecommendCell : UITableViewDataSource,UITableViewDelegate{
+extension RecommendImageCell : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let videoModelFrame = videoModelFrame else { return 0 }
         return videoModelFrame.commentFrames.count
@@ -197,15 +183,8 @@ extension RecommendCell : UITableViewDataSource,UITableViewDelegate{
 
 // MARK:- 评论点击用户代理
 //extension RecommendVideoCell : RecommendCommentTableCellDelegate{
-//    func recommendCommentTableCell(_ recommendCommentTableCell: RecommendCommentTableCell, _ didClickedUser: UserInfor) {
-//        print(didClickedUser.nick_name)
-//    }
+////    func recommendCommentTableCell(_ recommendCommentTableCell: RecommendCommentTableCell, _ didClickedUser: UserInfor) {
+////        print(didClickedUser.nick_name)
+////    }
 //}
-extension RecommendCell : RecommentVideoViewDelegate{
-
-    func didPlayClickButton(_ recommentVideoView: RecommentVideoView, _ indexPath: IndexPath) {
-        delegateRecommendCell?.didPlayClickButton(self, indexPath)
-    }
-}
-
 

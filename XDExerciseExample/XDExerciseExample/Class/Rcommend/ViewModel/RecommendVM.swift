@@ -48,10 +48,13 @@ extension RecommendVM{
                     guard let list = recommendMainModel.list else { return }
                     for (index, video) in list.video.enumerated(){
                         if index == 0{
-                            let videoF = VideoModelFrame(video)
-                            self.videoModelFrameArray.append(videoF)
+//                            var url = video.video_url_stream
+                            video.video_url_stream = "http://flv2.bn.netease.com/videolib3/1608/30/zPuaL7429/SD/zPuaL7429-mobile.mp4"
+                            
+                            
                         }
-                        
+                        let videoF = VideoModelFrame(video)
+                        self.videoModelFrameArray.append(videoF)
                         
                     }
 //

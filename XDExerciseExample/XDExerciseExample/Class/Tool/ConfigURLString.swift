@@ -61,3 +61,8 @@ let INTEGRAL_USER_SIGN  = "/userSign"
 let RecommendTopicCellIdentifier = "RecommendTopicCellIdentifier"
 let RecommendCommentCellIdentifier = "RecommendCommentCellIdentifier"
 
+
+// MARK:- 通知
+/// 删除所有的player
+let RemoveActionPlayer = "removeActionPlayer"
+

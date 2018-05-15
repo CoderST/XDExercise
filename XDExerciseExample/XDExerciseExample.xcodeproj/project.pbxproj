@@ -23,6 +23,23 @@
 		0F17904F209B167C00B2A4FC /* STCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F17904E209B167C00B2A4FC /* STCameraView.swift */; };
 		0F179056209B1A2000B2A4FC /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F179055209B1A2000B2A4FC /* TestVC.swift */; };
 		0F3A1227209BF72F003CBE3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3A1226209BF72F003CBE3A /* ViewController.swift */; };
+		0F3FE90720AAC6E6009F3570 /* ic_video_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE8F620AAC6E6009F3570 /* ic_video_play@2x.png */; };
+		0F3FE90820AAC6E6009F3570 /* ic_video_pause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE8F720AAC6E6009F3570 /* ic_video_pause@3x.png */; };
+		0F3FE90920AAC6E6009F3570 /* CLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3FE8F820AAC6E6009F3570 /* CLSlider.m */; };
+		0F3FE90A20AAC6E6009F3570 /* ic_mute@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE8FA20AAC6E6009F3570 /* ic_mute@3x.png */; };
+		0F3FE90B20AAC6E6009F3570 /* ic_mute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE8FB20AAC6E6009F3570 /* ic_mute@2x.png */; };
+		0F3FE90C20AAC6E6009F3570 /* ic_video_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE8FC20AAC6E6009F3570 /* ic_video_pause@2x.png */; };
+		0F3FE90D20AAC6E6009F3570 /* ic_video_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE8FD20AAC6E6009F3570 /* ic_video_play@3x.png */; };
+		0F3FE90E20AAC6E6009F3570 /* CLPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3FE8FE20AAC6E6009F3570 /* CLPlayerMaskView.m */; };
+		0F3FE90F20AAC6E6009F3570 /* ic_video_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE8FF20AAC6E6009F3570 /* ic_video_0@2x.png */; };
+		0F3FE91020AAC6E6009F3570 /* ic_video_0@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE90020AAC6E6009F3570 /* ic_video_0@3x.png */; };
+		0F3FE91120AAC6E6009F3570 /* CLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3FE90220AAC6E6009F3570 /* CLPlayerView.m */; };
+		0F3FE91220AAC6E6009F3570 /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE90320AAC6E6009F3570 /* CLPlayer.bundle */; };
+		0F3FE91320AAC6E6009F3570 /* ic_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE90520AAC6E6009F3570 /* ic_play@3x.png */; };
+		0F3FE91420AAC6E6009F3570 /* ic_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3FE90620AAC6E6009F3570 /* ic_play@2x.png */; };
+		0F5B81D720A708D200AAAA66 /* XDVideoManageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5B81D620A708D200AAAA66 /* XDVideoManageApi.swift */; };
+		0F5B820F20A7D93900AAAA66 /* WMPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0F5B820C20A7D93900AAAA66 /* WMPlayer.bundle */; };
+		0F5B821020A7D93900AAAA66 /* WMPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5B820E20A7D93900AAAA66 /* WMPlayer.m */; };
 		0F6914D8209ED10E00969F2F /* ProductDetailReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6914D7209ED10E00969F2F /* ProductDetailReusableView.swift */; };
 		0F6914DA209ED22600969F2F /* ProductDetailBuyCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6914D9209ED22600969F2F /* ProductDetailBuyCommentModel.swift */; };
 		0F77951020A155A000C15A96 /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F77950F20A155A000C15A96 /* CacheHelper.swift */; };
@@ -41,6 +58,22 @@
 		0F9ECB0520858E4D00BD8FB2 /* JoinActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9ECB0420858E4D00BD8FB2 /* JoinActivityVC.swift */; };
 		0F9ECB072085B9B800BD8FB2 /* ConfigURLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9ECB062085B9B800BD8FB2 /* ConfigURLString.swift */; };
 		0F9ECB0E2085BB4E00BD8FB2 /* RegisterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9ECB0D2085BB4E00BD8FB2 /* RegisterVM.swift */; };
+		0FA1C94520A7DE2700EC3EEC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C92D20A7DE2700EC3EEC /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		0FA1C94620A7DE2700EC3EEC /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C93620A7DE2700EC3EEC /* ViewController+MASAdditions.m */; };
+		0FA1C94720A7DE2700EC3EEC /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C93A20A7DE2700EC3EEC /* MASCompositeConstraint.m */; };
+		0FA1C94820A7DE2700EC3EEC /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C93B20A7DE2700EC3EEC /* MASConstraintMaker.m */; };
+		0FA1C94920A7DE2700EC3EEC /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C93C20A7DE2700EC3EEC /* MASLayoutConstraint.m */; };
+		0FA1C94A20A7DE2700EC3EEC /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C93D20A7DE2700EC3EEC /* NSArray+MASAdditions.m */; };
+		0FA1C94B20A7DE2700EC3EEC /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C93E20A7DE2700EC3EEC /* View+MASAdditions.m */; };
+		0FA1C94C20A7DE2700EC3EEC /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C94120A7DE2700EC3EEC /* MASConstraint.m */; };
+		0FA1C94D20A7DE2700EC3EEC /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C94320A7DE2700EC3EEC /* MASViewConstraint.m */; };
+		0FA1C94E20A7DE2700EC3EEC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C94420A7DE2700EC3EEC /* MASViewAttribute.m */; };
+		0FA1C96320A7ECD000EC3EEC /* STPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C96220A7ECD000EC3EEC /* STPlayer.swift */; };
+		0FA1C96520A7ECEF00EC3EEC /* STReourceLoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C96420A7ECEF00EC3EEC /* STReourceLoaderManager.swift */; };
+		0FA1C96720A7ED0400EC3EEC /* STConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C96620A7ED0400EC3EEC /* STConfiguration.swift */; };
+		0FA1C96920A7ED3600EC3EEC /* STDownLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C96820A7ED3600EC3EEC /* STDownLoader.swift */; };
+		0FA1C96B20A7ED5C00EC3EEC /* STFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C96A20A7ED5C00EC3EEC /* STFileManager.swift */; };
+		0FA1C96D20A7ED7C00EC3EEC /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1C96C20A7ED7C00EC3EEC /* URL+Extension.swift */; };
 		0FA5C0DE20A474F500CBC948 /* AnswerManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA5C0DD20A474F500CBC948 /* AnswerManage.swift */; };
 		0FA8CA512096038C0065C6AF /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA8CA502096038C0065C6AF /* ProductModel.swift */; };
 		0FA8CA53209822D60065C6AF /* RegisterUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA8CA52209822D60065C6AF /* RegisterUserModel.swift */; };
@@ -118,6 +151,27 @@
 		0F17904E209B167C00B2A4FC /* STCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STCameraView.swift; sourceTree = "<group>"; };
 		0F179055209B1A2000B2A4FC /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		0F3A1226209BF72F003CBE3A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0F3FE8F620AAC6E6009F3570 /* ic_video_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_video_play@2x.png"; sourceTree = "<group>"; };
+		0F3FE8F720AAC6E6009F3570 /* ic_video_pause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_video_pause@3x.png"; sourceTree = "<group>"; };
+		0F3FE8F820AAC6E6009F3570 /* CLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSlider.m; sourceTree = "<group>"; };
+		0F3FE8F920AAC6E6009F3570 /* CLPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPlayerView.h; sourceTree = "<group>"; };
+		0F3FE8FA20AAC6E6009F3570 /* ic_mute@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_mute@3x.png"; sourceTree = "<group>"; };
+		0F3FE8FB20AAC6E6009F3570 /* ic_mute@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_mute@2x.png"; sourceTree = "<group>"; };
+		0F3FE8FC20AAC6E6009F3570 /* ic_video_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_video_pause@2x.png"; sourceTree = "<group>"; };
+		0F3FE8FD20AAC6E6009F3570 /* ic_video_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_video_play@3x.png"; sourceTree = "<group>"; };
+		0F3FE8FE20AAC6E6009F3570 /* CLPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPlayerMaskView.m; sourceTree = "<group>"; };
+		0F3FE8FF20AAC6E6009F3570 /* ic_video_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_video_0@2x.png"; sourceTree = "<group>"; };
+		0F3FE90020AAC6E6009F3570 /* ic_video_0@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_video_0@3x.png"; sourceTree = "<group>"; };
+		0F3FE90120AAC6E6009F3570 /* CLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSlider.h; sourceTree = "<group>"; };
+		0F3FE90220AAC6E6009F3570 /* CLPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPlayerView.m; sourceTree = "<group>"; };
+		0F3FE90320AAC6E6009F3570 /* CLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLPlayer.bundle; sourceTree = "<group>"; };
+		0F3FE90420AAC6E6009F3570 /* CLPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPlayerMaskView.h; sourceTree = "<group>"; };
+		0F3FE90520AAC6E6009F3570 /* ic_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_play@3x.png"; sourceTree = "<group>"; };
+		0F3FE90620AAC6E6009F3570 /* ic_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_play@2x.png"; sourceTree = "<group>"; };
+		0F5B81D620A708D200AAAA66 /* XDVideoManageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDVideoManageApi.swift; sourceTree = "<group>"; };
+		0F5B820C20A7D93900AAAA66 /* WMPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WMPlayer.bundle; sourceTree = "<group>"; };
+		0F5B820D20A7D93900AAAA66 /* WMPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPlayer.h; sourceTree = "<group>"; };
+		0F5B820E20A7D93900AAAA66 /* WMPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPlayer.m; sourceTree = "<group>"; };
 		0F6914D7209ED10E00969F2F /* ProductDetailReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailReusableView.swift; sourceTree = "<group>"; };
 		0F6914D9209ED22600969F2F /* ProductDetailBuyCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailBuyCommentModel.swift; sourceTree = "<group>"; };
 		0F77950F20A155A000C15A96 /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
@@ -138,6 +192,37 @@
 		0F9ECB0420858E4D00BD8FB2 /* JoinActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinActivityVC.swift; sourceTree = "<group>"; };
 		0F9ECB062085B9B800BD8FB2 /* ConfigURLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigURLString.swift; sourceTree = "<group>"; };
 		0F9ECB0D2085BB4E00BD8FB2 /* RegisterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVM.swift; sourceTree = "<group>"; };
+		0FA1C92C20A7DE2700EC3EEC /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
+		0FA1C92D20A7DE2700EC3EEC /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		0FA1C92E20A7DE2700EC3EEC /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
+		0FA1C92F20A7DE2700EC3EEC /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
+		0FA1C93020A7DE2700EC3EEC /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		0FA1C93120A7DE2700EC3EEC /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
+		0FA1C93220A7DE2700EC3EEC /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
+		0FA1C93320A7DE2700EC3EEC /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		0FA1C93420A7DE2700EC3EEC /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
+		0FA1C93520A7DE2700EC3EEC /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
+		0FA1C93620A7DE2700EC3EEC /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		0FA1C93720A7DE2700EC3EEC /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
+		0FA1C93820A7DE2700EC3EEC /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
+		0FA1C93920A7DE2700EC3EEC /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		0FA1C93A20A7DE2700EC3EEC /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
+		0FA1C93B20A7DE2700EC3EEC /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
+		0FA1C93C20A7DE2700EC3EEC /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
+		0FA1C93D20A7DE2700EC3EEC /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		0FA1C93E20A7DE2700EC3EEC /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
+		0FA1C93F20A7DE2700EC3EEC /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		0FA1C94020A7DE2700EC3EEC /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
+		0FA1C94120A7DE2700EC3EEC /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
+		0FA1C94220A7DE2700EC3EEC /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
+		0FA1C94320A7DE2700EC3EEC /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
+		0FA1C94420A7DE2700EC3EEC /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		0FA1C96220A7ECD000EC3EEC /* STPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STPlayer.swift; sourceTree = "<group>"; };
+		0FA1C96420A7ECEF00EC3EEC /* STReourceLoaderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STReourceLoaderManager.swift; sourceTree = "<group>"; };
+		0FA1C96620A7ED0400EC3EEC /* STConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STConfiguration.swift; sourceTree = "<group>"; };
+		0FA1C96820A7ED3600EC3EEC /* STDownLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STDownLoader.swift; sourceTree = "<group>"; };
+		0FA1C96A20A7ED5C00EC3EEC /* STFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STFileManager.swift; sourceTree = "<group>"; };
+		0FA1C96C20A7ED7C00EC3EEC /* URL+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		0FA5C0DD20A474F500CBC948 /* AnswerManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerManage.swift; sourceTree = "<group>"; };
 		0FA5C12020A5DE9F00CBC948 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0FA5C12220A5DEAA00CBC948 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -267,6 +352,40 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0F3FE8F520AAC6E6009F3570 /* CLPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				0F3FE8F620AAC6E6009F3570 /* ic_video_play@2x.png */,
+				0F3FE8F720AAC6E6009F3570 /* ic_video_pause@3x.png */,
+				0F3FE8F820AAC6E6009F3570 /* CLSlider.m */,
+				0F3FE8F920AAC6E6009F3570 /* CLPlayerView.h */,
+				0F3FE8FA20AAC6E6009F3570 /* ic_mute@3x.png */,
+				0F3FE8FB20AAC6E6009F3570 /* ic_mute@2x.png */,
+				0F3FE8FC20AAC6E6009F3570 /* ic_video_pause@2x.png */,
+				0F3FE8FD20AAC6E6009F3570 /* ic_video_play@3x.png */,
+				0F3FE8FE20AAC6E6009F3570 /* CLPlayerMaskView.m */,
+				0F3FE8FF20AAC6E6009F3570 /* ic_video_0@2x.png */,
+				0F3FE90020AAC6E6009F3570 /* ic_video_0@3x.png */,
+				0F3FE90120AAC6E6009F3570 /* CLSlider.h */,
+				0F3FE90220AAC6E6009F3570 /* CLPlayerView.m */,
+				0F3FE90320AAC6E6009F3570 /* CLPlayer.bundle */,
+				0F3FE90420AAC6E6009F3570 /* CLPlayerMaskView.h */,
+				0F3FE90520AAC6E6009F3570 /* ic_play@3x.png */,
+				0F3FE90620AAC6E6009F3570 /* ic_play@2x.png */,
+			);
+			path = CLPlayer;
+			sourceTree = "<group>";
+		};
+		0F5B820B20A7D93900AAAA66 /* WMPlayerTool */ = {
+			isa = PBXGroup;
+			children = (
+				0F5B820C20A7D93900AAAA66 /* WMPlayer.bundle */,
+				0F5B820D20A7D93900AAAA66 /* WMPlayer.h */,
+				0F5B820E20A7D93900AAAA66 /* WMPlayer.m */,
+			);
+			path = WMPlayerTool;
 			sourceTree = "<group>";
 		};
 		0F77950E20A1558900C15A96 /* Help */ = {
@@ -631,6 +750,10 @@
 		0F796E9A2081B1CF00D044B6 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				0F3FE8F520AAC6E6009F3570 /* CLPlayer */,
+				0FA1C94F20A7EB1B00EC3EEC /* STPlayer */,
+				0FA1C92B20A7DE2700EC3EEC /* Masonry */,
+				0F5B820B20A7D93900AAAA66 /* WMPlayerTool */,
 				0FA5C13C20A5E3B100CBC948 /* Manage */,
 				0F77950E20A1558900C15A96 /* Help */,
 				0FB317FE209F360B00E8610E /* Emoji */,
@@ -777,6 +900,51 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0FA1C92B20A7DE2700EC3EEC /* Masonry */ = {
+			isa = PBXGroup;
+			children = (
+				0FA1C92C20A7DE2700EC3EEC /* MASCompositeConstraint.h */,
+				0FA1C92D20A7DE2700EC3EEC /* NSLayoutConstraint+MASDebugAdditions.m */,
+				0FA1C92E20A7DE2700EC3EEC /* MASConstraint+Private.h */,
+				0FA1C92F20A7DE2700EC3EEC /* MASLayoutConstraint.h */,
+				0FA1C93020A7DE2700EC3EEC /* NSArray+MASShorthandAdditions.h */,
+				0FA1C93120A7DE2700EC3EEC /* MASConstraintMaker.h */,
+				0FA1C93220A7DE2700EC3EEC /* View+MASAdditions.h */,
+				0FA1C93320A7DE2700EC3EEC /* NSArray+MASAdditions.h */,
+				0FA1C93420A7DE2700EC3EEC /* MASUtilities.h */,
+				0FA1C93520A7DE2700EC3EEC /* MASViewAttribute.h */,
+				0FA1C93620A7DE2700EC3EEC /* ViewController+MASAdditions.m */,
+				0FA1C93720A7DE2700EC3EEC /* MASViewConstraint.h */,
+				0FA1C93820A7DE2700EC3EEC /* MASConstraint.h */,
+				0FA1C93920A7DE2700EC3EEC /* NSLayoutConstraint+MASDebugAdditions.h */,
+				0FA1C93A20A7DE2700EC3EEC /* MASCompositeConstraint.m */,
+				0FA1C93B20A7DE2700EC3EEC /* MASConstraintMaker.m */,
+				0FA1C93C20A7DE2700EC3EEC /* MASLayoutConstraint.m */,
+				0FA1C93D20A7DE2700EC3EEC /* NSArray+MASAdditions.m */,
+				0FA1C93E20A7DE2700EC3EEC /* View+MASAdditions.m */,
+				0FA1C93F20A7DE2700EC3EEC /* View+MASShorthandAdditions.h */,
+				0FA1C94020A7DE2700EC3EEC /* Masonry.h */,
+				0FA1C94120A7DE2700EC3EEC /* MASConstraint.m */,
+				0FA1C94220A7DE2700EC3EEC /* ViewController+MASAdditions.h */,
+				0FA1C94320A7DE2700EC3EEC /* MASViewConstraint.m */,
+				0FA1C94420A7DE2700EC3EEC /* MASViewAttribute.m */,
+			);
+			path = Masonry;
+			sourceTree = "<group>";
+		};
+		0FA1C94F20A7EB1B00EC3EEC /* STPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				0FA1C96220A7ECD000EC3EEC /* STPlayer.swift */,
+				0FA1C96C20A7ED7C00EC3EEC /* URL+Extension.swift */,
+				0FA1C96A20A7ED5C00EC3EEC /* STFileManager.swift */,
+				0FA1C96820A7ED3600EC3EEC /* STDownLoader.swift */,
+				0FA1C96620A7ED0400EC3EEC /* STConfiguration.swift */,
+				0FA1C96420A7ECEF00EC3EEC /* STReourceLoaderManager.swift */,
+			);
+			path = STPlayer;
+			sourceTree = "<group>";
+		};
 		0FA5C0C920A472CE00CBC948 /* Answer */ = {
 			isa = PBXGroup;
 			children = (
@@ -820,6 +988,7 @@
 		0FA5C13C20A5E3B100CBC948 /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				0F5B81D620A708D200AAAA66 /* XDVideoManageApi.swift */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -1054,16 +1223,28 @@
 			files = (
 				0FB3186920A04D8400E8610E /* biaoqing_yun.png in Resources */,
 				0FB3186B20A04D8400E8610E /* biaoqing_huaixiao.png in Resources */,
+				0F3FE90A20AAC6E6009F3570 /* ic_mute@3x.png in Resources */,
+				0F3FE90D20AAC6E6009F3570 /* ic_video_play@3x.png in Resources */,
+				0F3FE91420AAC6E6009F3570 /* ic_play@2x.png in Resources */,
 				0FD1E842209583A000F7230F /* WebViewJavascriptBridge.js.txt in Resources */,
 				0FB3186E20A04D8400E8610E /* biaoqing_kuxiaobude.png in Resources */,
+				0F3FE90B20AAC6E6009F3570 /* ic_mute@2x.png in Resources */,
+				0F3FE90F20AAC6E6009F3570 /* ic_video_0@2x.png in Resources */,
+				0F5B820F20A7D93900AAAA66 /* WMPlayer.bundle in Resources */,
+				0F3FE90820AAC6E6009F3570 /* ic_video_pause@3x.png in Resources */,
+				0F3FE91320AAC6E6009F3570 /* ic_play@3x.png in Resources */,
 				0FB3186F20A04D8400E8610E /* biaoqing_guzhang.png in Resources */,
 				0FB3186A20A04D8400E8610E /* biaoqing_shuaidao.png in Resources */,
 				0FB513E120848516005E649D /* answerEntrance.gif in Resources */,
+				0F3FE91220AAC6E6009F3570 /* CLPlayer.bundle in Resources */,
 				0FB3186D20A04D8400E8610E /* biaoqing_se.png in Resources */,
 				0FB3181820A03E9B00E8610E /* XD_Emoji.plist in Resources */,
 				0F796E6A2081930200D044B6 /* Assets.xcassets in Resources */,
 				0FB3186C20A04D8400E8610E /* biaoqing_cool.png in Resources */,
+				0F3FE90720AAC6E6009F3570 /* ic_video_play@2x.png in Resources */,
+				0F3FE91020AAC6E6009F3570 /* ic_video_0@3x.png in Resources */,
 				0FD1E7932092BFBA00F7230F /* test.html in Resources */,
+				0F3FE90C20AAC6E6009F3570 /* ic_video_pause@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1083,16 +1264,12 @@
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GPUImage/GPUImage.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/HappyDNS/HappyDNS.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/Qiniu/Qiniu.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SSKeychain/SSKeychain.framework",
-				"${BUILT_PRODUCTS_DIR}/STRowLayout/STRowLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/XHLaunchAd/XHLaunchAd.framework",
 				"${BUILT_PRODUCTS_DIR}/YYAsyncLayer/YYAsyncLayer.framework",
@@ -1102,7 +1279,6 @@
 				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKeyboardManager/YYKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
-				"${BUILT_PRODUCTS_DIR}/ZFPlayer/ZFPlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1112,16 +1288,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GPUImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HappyDNS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Qiniu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSKeychain.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/STRowLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XHLaunchAd.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYAsyncLayer.framework",
@@ -1131,7 +1303,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZFPlayer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1182,14 +1353,23 @@
 				0F0DB627208D72FA00D538D5 /* XDUserImageView.swift in Sources */,
 				0F894BC52091E07300866379 /* MoreActivityVC.swift in Sources */,
 				0F796E632081930200D044B6 /* AppDelegate.swift in Sources */,
+				0FA1C94620A7DE2700EC3EEC /* ViewController+MASAdditions.m in Sources */,
+				0FA1C94E20A7DE2700EC3EEC /* MASViewAttribute.m in Sources */,
 				0F179045209AB07F00B2A4FC /* CouponView.swift in Sources */,
+				0FA1C96920A7ED3600EC3EEC /* STDownLoader.swift in Sources */,
+				0FA1C94A20A7DE2700EC3EEC /* NSArray+MASAdditions.m in Sources */,
 				0FE5D8892081E71F000A784A /* STTabbar.swift in Sources */,
+				0F5B821020A7D93900AAAA66 /* WMPlayer.m in Sources */,
 				0FE5D8952081E968000A784A /* MeMainVC.swift in Sources */,
 				0F179039209A994E00B2A4FC /* ProductStaticView.swift in Sources */,
 				0FB513D920847893005E649D /* PriceView.swift in Sources */,
+				0F3FE90920AAC6E6009F3570 /* CLSlider.m in Sources */,
 				0F17904F209B167C00B2A4FC /* STCameraView.swift in Sources */,
+				0FA1C94520A7DE2700EC3EEC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				0FA1C96320A7ECD000EC3EEC /* STPlayer.swift in Sources */,
 				0FD1E84A2095F7F900F7230F /* ProductDetailVC.swift in Sources */,
 				0FC41448209096FC00CA152A /* RecommendCommentModelFrame.swift in Sources */,
+				0FA1C94C20A7DE2700EC3EEC /* MASConstraint.m in Sources */,
 				0FE5D8912081E92A000A784A /* FindMainVC.swift in Sources */,
 				0FA8CA5920994E640065C6AF /* XDPlanFlowLayout.swift in Sources */,
 				0F0DB629208DCA4900D538D5 /* XDAttentionView.swift in Sources */,
@@ -1210,9 +1390,14 @@
 				0FB3180E20A01B0B00E8610E /* EmojiAttachment.swift in Sources */,
 				0FE5D8A22082349F000A784A /* RecommendCell.swift in Sources */,
 				0F77953E20A187C100C15A96 /* NetWorkCache.swift in Sources */,
+				0FA1C96720A7ED0400EC3EEC /* STConfiguration.swift in Sources */,
+				0FA1C96D20A7ED7C00EC3EEC /* URL+Extension.swift in Sources */,
 				0FB3181120A01B0B00E8610E /* EmojiToolModel.swift in Sources */,
 				0F3A1227209BF72F003CBE3A /* ViewController.swift in Sources */,
+				0FA1C94D20A7DE2700EC3EEC /* MASViewConstraint.m in Sources */,
 				0FD1E84C2095FA6D00F7230F /* ProductDetailVM.swift in Sources */,
+				0FA1C96B20A7ED5C00EC3EEC /* STFileManager.swift in Sources */,
+				0F3FE90E20AAC6E6009F3570 /* CLPlayerMaskView.m in Sources */,
 				0FB3181020A01B0B00E8610E /* NSAttributedString+Extension.swift in Sources */,
 				0FB513D720846746005E649D /* RecommentVideoView.swift in Sources */,
 				0F77951020A155A000C15A96 /* CacheHelper.swift in Sources */,
@@ -1229,13 +1414,16 @@
 				0F17903B209AA0F500B2A4FC /* ProductDetailPriceBaoyouView.swift in Sources */,
 				0FA8CA5D2099A5190065C6AF /* ProductModelFrame.swift in Sources */,
 				0F17903D209AA58B00B2A4FC /* TopicView.swift in Sources */,
+				0F5B81D720A708D200AAAA66 /* XDVideoManageApi.swift in Sources */,
 				0FB513DD20847B34005E649D /* String+Extension.swift in Sources */,
+				0F3FE91120AAC6E6009F3570 /* CLPlayerView.m in Sources */,
 				0FA8CA5F2099C1340065C6AF /* XDCustomVew.swift in Sources */,
 				0F179056209B1A2000B2A4FC /* TestVC.swift in Sources */,
 				0FAFE048208244C900C46944 /* RecommendVM.swift in Sources */,
 				0FA8CA53209822D60065C6AF /* RegisterUserModel.swift in Sources */,
 				0FE5D8842081E67E000A784A /* MainTabBarController.swift in Sources */,
 				0F894BBE2091D05800866379 /* QianDaoView.swift in Sources */,
+				0FA1C94920A7DE2700EC3EEC /* MASLayoutConstraint.m in Sources */,
 				0F93C1AE208F3918001F56D6 /* RecommendTopicModel.swift in Sources */,
 				0FE5D8932081E94A000A784A /* AttentionMainVC.swift in Sources */,
 				0F894BBC2091CA3B00866379 /* RecommendCellBottomBarView.swift in Sources */,
@@ -1243,6 +1431,8 @@
 				0FD1E841209583A000F7230F /* WebViewJavascriptBridge.m in Sources */,
 				0F17903F209AA69B00B2A4FC /* TopicCollectionViewCell.swift in Sources */,
 				0FB3180F20A01B0B00E8610E /* EmojiButton.swift in Sources */,
+				0FA1C94B20A7DE2700EC3EEC /* View+MASAdditions.m in Sources */,
+				0FA1C94720A7DE2700EC3EEC /* MASCompositeConstraint.m in Sources */,
 				0F93C1AC208F37D5001F56D6 /* RecommendTopicView.swift in Sources */,
 				0FE5D88D2081E8B0000A784A /* RecommendMainVC.swift in Sources */,
 				0F9ECB072085B9B800BD8FB2 /* ConfigURLString.swift in Sources */,
@@ -1250,10 +1440,12 @@
 				0FA8CA5B209958610065C6AF /* ProductDetailCell.swift in Sources */,
 				0F17904B209AFCD300B2A4FC /* CommentModel.swift in Sources */,
 				0FCD6B7820831D8E006D46D8 /* User.swift in Sources */,
+				0FA1C94820A7DE2700EC3EEC /* MASConstraintMaker.m in Sources */,
 				0F93C1AA208F0964001F56D6 /* RecommendTopicCell.swift in Sources */,
 				0FD1E840209583A000F7230F /* WKWebViewJavascriptBridge.m in Sources */,
 				0FB513DF20848102005E649D /* RecommendNormalOrProduct.swift in Sources */,
 				0FB513DB208478C1005E649D /* CommissionView.swift in Sources */,
+				0FA1C96520A7ECEF00EC3EEC /* STReourceLoaderManager.swift in Sources */,
 				0FA8CA512096038C0065C6AF /* ProductModel.swift in Sources */,
 				0F9ECB0520858E4D00BD8FB2 /* JoinActivityVC.swift in Sources */,
 			);

@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import ZFPlayer
+protocol RecommentVideoViewDelegate : class {
+    func didPlayClickButton(_ recommentVideoView : RecommentVideoView , _ indexPath : IndexPath)
+}
 class RecommentVideoView: UIView {
 
-    fileprivate lazy var zfpModel : ZFPlayerModel = ZFPlayerModel()
-//    static let playerView = ZFPlayerView.shared()
-    fileprivate lazy var zfpPlayerView : ZFPlayerView = {
-       let zfpPlayerView = ZFPlayerView.shared()!
-//        zfpPlayerView.delegate = self
-        zfpPlayerView.stopPlayWhileCellNotVisable = true
-        return zfpPlayerView
+    weak var delegateVideoView : RecommentVideoViewDelegate?
+    
+    fileprivate lazy var videoCoverImageView : UIImageView = {
+        let videoCoverImageView = UIImageView()
+        videoCoverImageView.contentMode = .scaleAspectFill
+        videoCoverImageView.clipsToBounds = true
+        return videoCoverImageView
     }()
     
     
@@ -26,64 +28,88 @@ class RecommentVideoView: UIView {
         return playButton
     }()
     
+    
+    fileprivate lazy var stPlayer = STPlayer()
+    
+    
+    
     var  videoModelFrame : VideoModelFrame?{
         didSet{
             guard let videoModelFrame = videoModelFrame else { return }
-            debugLog(tag)
+            if let url = URL(string: videoModelFrame.videoCoverImageUrl){
+                videoCoverImageView.kf.setImage(with: url, placeholder: UIImage(named: "avatar_default"), options: nil, progressBlock: nil, completionHandler: nil)
+            }
             
-
-
+        }
+    }
+    
+    var isHiddenPlayer: Bool?{
+        didSet{
+            guard let isHiddenPlayer = isHiddenPlayer else { return }
+            playButton.isHidden = isHiddenPlayer
+//            zfpPlayerView.isHidden = isHiddenPlayer
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .gray
-        addSubview(zfpPlayerView)
+        addSubview(videoCoverImageView)
         addSubview(playButton)
         playButton.addTarget(self, action: #selector(RecommentVideoView.buttonAction), for: .touchUpInside)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        zfpPlayerView.frame = bounds
+        videoCoverImageView.frame = bounds
         playButton.frame = CGRect(x: 100, y: 60, width: 40, height: 40)
-        debugLog(frame)
-        debugLog(zfpPlayerView.frame)
     }
     
     @objc func buttonAction(){
-        guard let videoModelFrame = videoModelFrame else { return }
-        let controlView = ZFPlayerControlView()
-        zfpModel.fatherViewTag = tag
-        let index = videoModelFrame.indexPathItem
-        let indexPath = NSIndexPath(item: index, section: 0)
-        zfpModel.indexPath = indexPath as IndexPath!
-        zfpModel.placeholderImageURLString = videoModelFrame.videoCoverImageUrl
-        //            zfpModel.placeholderImage = UIImage(named: "avatar_default")
-        if let collectionView = videoModelFrame.collectionView{
-            zfpModel.scrollView = collectionView
-        }
-        if let url = URL(string: "http://v1.mukewang.com/3e35cbb0-c8e5-4827-9614-b5a355259010/L.mp4"){
-            
-//            zfpModel.resolutionDic = ["高清" : "http://v1.mukewang.com/3e35cbb0-c8e5-4827-9614-b5a355259010/L.mp4"]
-            zfpModel.videoURL = url
-        }
         
-        
-        zfpPlayerView.playerLayerGravity = .resizeAspectFill
-        zfpPlayerView.delegate = self
-        zfpPlayerView.playerControlView(controlView, playerModel: zfpModel)
-        //            zfpPlayerView.playerModel(zfpModel)
-                    zfpPlayerView.autoPlayTheVideo()
-        //            zfpPlayerView.reset(toPlayNewVideo: zfpModel)
+//            delegateVideoView?.didPlayClickButton(self,index)
     }
-    
+        
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension RecommentVideoView : ZFPlayerDelegate{
+extension RecommentVideoView : WMPlayerDelegate{
+    //点击播放暂停按钮代理方法
+    func wmplayer(_ wmplayer: WMPlayer!, clickedPlayOrPause playOrPauseBtn: UIButton!) {
+        
+    }
     
+    //点击关闭按钮代理方法
+    func wmplayer(_ wmplayer: WMPlayer!, clickedClose closeBtn: UIButton!) {
+        
+    }
+    //点击全屏按钮代理方法
+    func wmplayer(_ wmplayer: WMPlayer!, clickedFullScreenButton fullScreenBtn: UIButton!) {
+        
+    }
+    //单击WMPlayer的代理方法
+    func wmplayer(_ wmplayer: WMPlayer!, singleTaped singleTap: UITapGestureRecognizer!) {
+        
+    }
+    //双击WMPlayer的代理方法
+    func wmplayer(_ wmplayer: WMPlayer!, doubleTaped doubleTap: UITapGestureRecognizer!) {
+        
+    }
+    
+    ///播放状态
+    //播放失败的代理方法
+    func wmplayerFailedPlay(_ wmplayer: WMPlayer!, wmPlayerStatus state: WMPlayerState) {
+        
+    }
+    
+    //准备播放的代理方法
+    func wmplayerReady(toPlay wmplayer: WMPlayer!, wmPlayerStatus state: WMPlayerState) {
+        // 发送通知
+    }
+    //播放完毕的代理方法
+    func wmplayerFinishedPlay(_ wmplayer: WMPlayer!) {
+        
+    }
 }

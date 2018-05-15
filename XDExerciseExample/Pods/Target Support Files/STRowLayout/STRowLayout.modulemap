@@ -1,6 +1,0 @@
-framework module STRowLayout {
-  umbrella header "STRowLayout-umbrella.h"
-
-  export *
-  module * { export * }
-}
