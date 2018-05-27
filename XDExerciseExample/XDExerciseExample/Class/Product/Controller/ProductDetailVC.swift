@@ -20,6 +20,14 @@ class ProductDetailVC: UIViewController {
     
     fileprivate lazy var productDeatilHeadView : ProductDetailHeadView = ProductDetailHeadView()
     
+    // 返回button
+    fileprivate lazy var backButton : UIButton = {
+       let backButton = UIButton()
+        backButton.backgroundColor = .red
+        backButton.frame = CGRect(x: 0, y: 70, width: 40, height: 40)
+        return backButton
+    }()
+    
     // collectionView
     fileprivate lazy var collectionView : UICollectionView = {[weak self] in
         // 设置layout属性
@@ -56,6 +64,18 @@ class ProductDetailVC: UIViewController {
             loadProductDetailCellDatas(productID)
         }
     }
+    
+    var product_id : String?{
+        didSet{
+            guard let productID = product_id else { return }
+            // 数据传递给headview
+            
+            // 取出ID
+            loadProductDetailData(productID, productDetailVCType.rawValue)
+            loadProductDetailCellDatas(productID)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fd_prefersNavigationBarHidden = true
@@ -78,10 +98,36 @@ extension ProductDetailVC {
         view.addSubview(collectionView)
         collectionView.addSubview(productDeatilHeadView)
         
-        
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         // 设置collectionView的内边距
 //        collectionView.contentOffset = CGPoint(x: 0, y: 20)
     }
+    
+    @objc fileprivate func backButtonAction(){
+//        popViewController(animated: true)
+        /*
+         if (self.navigationController.topViewController == self)
+         { [self.navigationController popViewControllerAnimated:YES]; } else { [self dismissViewControllerAnimated:YES completion:nil]; }
+         */
+//        if let topViewController = navigationController?.topViewController{
+//            if topViewController == self{
+//                navigationController?.popViewController(animated: true)
+//            }else{
+//                dismiss(animated: true, completion: nil)
+//            }
+//        }
+        
+        
+//        if (self.presentingViewController) { [self dismissViewControllerAnimated:YES completion:nil]; } else { [self.navigationController popViewControllerAnimated:YES]; }
+        
+        if presentingViewController != nil{
+            dismiss(animated: true, completion: nil)
+        }else{
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
 }
 
 // MARK:- 网络请求

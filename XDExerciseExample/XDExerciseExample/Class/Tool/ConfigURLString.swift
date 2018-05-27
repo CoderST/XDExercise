@@ -23,6 +23,12 @@ var kTOKEN : String{
     }
     
 }
+
+// MARK:- 蒲公英KEY
+let PGY_KEY_ID = "1938ba38d351c0447eb6639a4dbf4844"
+// MARK:- Bugly
+let BUGLY_APPID = "52657a0742"
+
 let kUSER_ID = kUDS.string(forKey: "user_id") ?? ""
 let XDCommentUserKey = "XDCommentUserKey";
 

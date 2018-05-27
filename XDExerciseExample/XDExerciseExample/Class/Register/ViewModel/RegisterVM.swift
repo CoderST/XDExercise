@@ -16,7 +16,7 @@ extension RegisterVM{
     /// 登录
     func registerSignIn(successCallBack : @escaping ()->(), stateCallBack : @escaping (_ message : String)->(), failedCallBack : @escaping (_ erroe : Error)->()){
         let parameters = [
-            "username" : "25667017399",
+            "username" : "18810900449",
             "password" : "123456",
             "come_form_app" : "0.0"
         ]

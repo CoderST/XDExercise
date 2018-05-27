@@ -27,8 +27,8 @@ class STTabbarButton: UIButton {
         imageView?.contentMode = .center
         titleLabel?.textAlignment = .center
         titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        setTitleColor(iOS7 ? .gray : .orange, for: .normal)
-        setTitleColor(iOS7 ? .black : .purple, for: .selected)
+        setTitleColor( .orange, for: .normal)
+        setTitleColor( .purple, for: .selected)
         
     }
 

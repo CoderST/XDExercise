@@ -42,14 +42,14 @@ class STTabbar: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        if (!iOS7) {
+//        if (!iOS7) {
             if let backImage = UIImage(named: "tabbar_background"){
                 
                 backgroundColor = UIColor(patternImage: backImage)
             }
             
             
-        }
+//        }
         backgroundColor = UIColor.white
 //        addSubview(plusButton)
 

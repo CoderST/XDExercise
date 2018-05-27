@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bugly
 import Alamofire
 import ReachabilitySwift
 import CoreTelephony
@@ -74,15 +75,7 @@ public class NetWork: NSObject {
         newParameters["device_identifier"] = "D9CF07CB6E094F91A5547B23EC6445AB"
         var sign : String = ""
         let signString = Utilities.dictionary(toString: newParameters) ?? ""
-        if kTOKEN.count > 0{
-            newParameters["auth_token"] = kTOKEN
-            let resultSign = "\(signString)\(time)\(kUSER_ID)xiu^*dou@2016#07#30~!bj99$&"
-            sign = Utilities.md5(resultSign)
-        }else{
-            
-            let resultSign = "\(signString)\(time)xiu^*dou@2016#07#30~!bj99$&"
-            sign = Utilities.md5(resultSign)
-        }
+
         newParameters["xsign"] = sign
         
         // sign
@@ -99,6 +92,9 @@ public class NetWork: NSObject {
         Alamofire.request(API_URL, method: method, parameters: newParameters).responseJSON { (response) in
             guard let result = response.result.value else {
                 print("没有result")
+                let error = response.error
+                Bugly.reportError(error!)
+                
                 return
             }
             NetWorkCache.setHttpCache(httpData: result, API_URL, newParameters)

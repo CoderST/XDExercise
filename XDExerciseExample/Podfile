@@ -85,10 +85,14 @@ pod 'YYAsyncLayer'                      , '1.0'
 pod 'GPUImage'
 
 # 腾讯崩溃sdk
-#pod 'Bugly'
+pod 'Bugly'
 
-pod 'Fabric'
-#pod 'Crashlytics', '~> 3.9.0'
+#pod 'Fabric'
+#pod 'Crashlytics'
+
+# 蒲公英SDK 上线一定要去掉,不然会被拒
+#pod 'Pgyer'
+#pod 'PgyUpdate'
 
 #获取硬件信息
 #Swift 4加载下面 (当前是4)
@@ -97,6 +101,13 @@ pod 'DeviceKit', '~> 1.3'
 #pod 'DeviceKit', '~> 1.2.3'
 
 #pod 'ZFPlayer'
+
+
+
+
+# 监控网络状态
+pod 'Reachability'
+
 end
 
 

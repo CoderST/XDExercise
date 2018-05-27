@@ -283,7 +283,10 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
     // 需要先暂停一小会之后再播放，否则网络状况不好的时候时间在走，声音播放不出来
     [self pausePlay];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self playVideo];
+        if (_isUserPlay){
+            [self playVideo];
+        }
+        
         // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
         isBuffering = NO;
         if (!self.playerItem.isPlaybackLikelyToKeepUp) {
@@ -559,6 +562,7 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
 #pragma mark - APP活动通知
 - (void)appDidEnterBackground:(NSNotification *)note{
     //将要挂起，停止播放
+    _isUserPlay = false;
     [self pausePlay];
 }
 - (void)appDidEnterPlayground:(NSNotification *)note{

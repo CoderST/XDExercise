@@ -21,11 +21,15 @@ class RecommendMainVC: UIViewController {
     fileprivate var firstCellIsOutWindow : Bool = false
     /// 不是自动播放情况下,点击播放按钮添加的CLPlayerView的数组
     fileprivate lazy var clPlayerViewArray : [CLPlayerView] = [CLPlayerView]()
-
+    
     /// 首页VM
     fileprivate lazy var recommentVM : RecommendVM = RecommendVM()
     /// 登录VM
     fileprivate lazy var registerVM : RegisterVM = RegisterVM()
+    /// 当前view是否在window正在显示
+    fileprivate var isViewShow: Bool = true
+    /// 执行了didselected 跳到下个界面了
+    fileprivate var isPushVC : Bool = false
     
     // MARK:- 懒加载
     // gif动画
@@ -47,14 +51,14 @@ class RecommendMainVC: UIViewController {
     
     // 签到抽奖
     fileprivate lazy var qianDaoView : QianDaoView = {
-       let qianDaoView = QianDaoView()
+        let qianDaoView = QianDaoView()
         
         return qianDaoView
     }()
     
     /// 答题
     fileprivate lazy var datiButton : UIButton = {
-       let datiButton = UIButton()
+        let datiButton = UIButton()
         datiButton.backgroundColor = .red
         
         return datiButton
@@ -70,7 +74,7 @@ class RecommendMainVC: UIViewController {
         // 创建UICollectionView
         let frame = CGRect(x: 0, y: 0, width: kScreenW, height: kScreenH)
         let collectionView = UICollectionView(frame:frame, collectionViewLayout: layout)
-//        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        //        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
@@ -83,6 +87,8 @@ class RecommendMainVC: UIViewController {
     var array : [String] = [String]()
     var label : UILabel!
     var count : Int = 0
+    
+    // MARK:- 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "推荐"
@@ -94,13 +100,19 @@ class RecommendMainVC: UIViewController {
         // 刷新网络请求
         networkLoadDatas()
         // 添加gif
-//        addGIFViewAnimation()
+        //        addGIFViewAnimation()
         // 或者最新token
-        getNewToken()
+        //        getNewToken()
         
         // 测试定时器
-//        let time = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeAction), userInfo: nil, repeats: true)
-//        RunLoop.main.add(time, forMode: .commonModes)
+        //        let time = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeAction), userInfo: nil, repeats: true)
+        //        RunLoop.main.add(time, forMode: .commonModes)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isViewShow = true
+        isPushVC = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -109,13 +121,44 @@ class RecommendMainVC: UIViewController {
         for indexPath in indexPaths{
             let cell = collectionView.cellForItem(at: indexPath)
             
-            if  indexPath.item == 0{
-                let cell = cell as! RecommendCell
-                didPlayClickButton(cell, indexPath)
-            }
+//            if  indexPath.item == 0{
+//                let cell = cell as! RecommendCell
+//                didPlayClickButton(cell, indexPath)
+//            }
+        }
+        
+        if isViewShow && recommentVM.imagePathsArray.count > 0 && clPlayerView == nil && isAutoPlay == true{
+            playVideoInVisiableCells()
+        }else if isViewShow && recommentVM.imagePathsArray.count > 0 && clPlayerView != nil && isAutoPlay == true{
+            clPlayerView?.playVideo()
+        }
+        
+        // 如果播放器存在并且是自动播放
+        // 1:如果播放器存在.播放
+        //        if (clPlayerView != nil && isAutoPlay == true) {
+        //            clPlayerView?.playVideo()
+        //        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 1:如果播放器存在.暂停
+        if (clPlayerView != nil) {
+            clPlayerView?.pausePlay()
         }
     }
-
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        isViewShow = false
+        let bool = isCurrentViewControllerVisible(viewController: self)
+        // 1:如果播放器存在.暂停
+        if (clPlayerView != nil) {
+            clPlayerView?.pausePlay()
+        }
+    }
+    
     @objc func timeAction(){
         count += 1
         debugLog(count)
@@ -129,14 +172,14 @@ extension RecommendMainVC{
         // 设置collectionView的内边距
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-//        // 签到
-//        view.addSubview(qianDaoView)
-//        /// 答题
-//        view.addSubview(datiButton)
-//        qianDaoView.delegateQianDao = self
-//        let width : CGFloat = 40
-//        qianDaoView.frame = CGRect(x: kScreenW - width - recommentMargin, y: 400, width: width, height: width)
-//        datiButton.frame = CGRect(x: kScreenW - 30, y: qianDaoView.frame.maxY + 10, width: 20, height: 20)
+        //        // 签到
+        //        view.addSubview(qianDaoView)
+        //        /// 答题
+        //        view.addSubview(datiButton)
+        //        qianDaoView.delegateQianDao = self
+        //        let width : CGFloat = 40
+        //        qianDaoView.frame = CGRect(x: kScreenW - width - recommentMargin, y: 400, width: width, height: width)
+        //        datiButton.frame = CGRect(x: kScreenW - 30, y: qianDaoView.frame.maxY + 10, width: 20, height: 20)
     }
 }
 // MARK:- 网络请求
@@ -148,14 +191,14 @@ extension RecommendMainVC{
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.4) {
                 
                 //进入界面播放
-                if self?.isAutoPlay == true{
+                if self?.isAutoPlay == true && self?.isViewShow == true{
                     
                     self?.playVideoInVisiableCells()
                 }
             }
-          
-        }, stateCallBack: { (message) in
-            SVProgressHUD.showInfo(withStatus: message)
+            
+            }, stateCallBack: { (message) in
+                SVProgressHUD.showInfo(withStatus: "loadRecommendDatas" + message)
         }) { (error) in
             let eoo = error as NSError
             SVProgressHUD.showError(withStatus: String(eoo.code))
@@ -163,13 +206,13 @@ extension RecommendMainVC{
     }
     
     func getNewToken(){
-//        registerVM.registerSignIn(successCallBack: {
-//            
-//        }, stateCallBack: { (message) in
-//            
-//        }) { (error) in
-//            
-//        }
+        registerVM.registerSignIn(successCallBack: {
+            
+        }, stateCallBack: { (message) in
+            
+        }) { (error) in
+            
+        }
     }
 }
 
@@ -185,7 +228,7 @@ extension RecommendMainVC : UICollectionViewDataSource{
         let videoF = recommentVM.videoModelFrameArray[indexPath.item]
         videoF.collectionView = collectionView
         videoF.collectionView = collectionView
-        videoF.indexPathItem = indexPath.item
+        videoF.indexPath = indexPath
         cell.videoModelFrame = videoF
         cell.delegateRecommendCell = self
         return cell
@@ -203,6 +246,12 @@ extension RecommendMainVC : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // 测试崩溃
+        //        debugLog("111111111111111111这里要崩溃啦")
+        //        let array : [String] = [String]()
+        //        let a = array[2]
+        //        print(a)
+        
         let videoF = recommentVM.videoModelFrameArray[indexPath.item]
         let video = videoF.videoModel
         switch video.type {
@@ -212,20 +261,17 @@ extension RecommendMainVC : UICollectionViewDelegateFlowLayout {
             navigationController?.pushViewController(productDetailVC, animated: true)
         default:
             let normalVC = ViewController()
-//            present(normalVC, animated: true, completion: nil)
-//            navigationController?.pushViewController(normalVC, animated: true)
+            //            present(normalVC, animated: true, completion: nil)
+            //            navigationController?.pushViewController(normalVC, animated: true)
             debugLog("点击了日常")
         }
     }
 }
 
-
-
-
 // MARK:- 私人代理
 // 轮播图点击事件
 extension RecommendMainVC : RecommendCycleViewDelegate,GifViewDelegate,QianDaoViewDelegate{
-  
+    
     func recommendCycleViewCycleScrollView(_ recommendCycleView: RecommendCycleView, didSelectItemAt index: Int) {
         guard let listArray = recommentVM.recommendMainModel?.list else { return }
         let remommend = listArray.recommend[index]
@@ -241,7 +287,7 @@ extension RecommendMainVC : RecommendCycleViewDelegate,GifViewDelegate,QianDaoVi
         debugLog("hhhhhh")
         // vc.url = [NSString stringWithFormat:@"%@%@%@.html?auth_token=%@&client=iOS",H5_URL,INTEGRAL,INTEGRAL_USER_SIGN,TOKEN];
         let activityVC = MoreActivityVC()
-//        kNavigation().pushViewController(activityVC, animated: true)
+        //        kNavigation().pushViewController(activityVC, animated: true)
         present(activityVC, animated: true, completion: nil)
     }
 }
@@ -256,6 +302,28 @@ extension RecommendMainVC{
         gifView.frame = CGRect(x: kScreenW - gifW - recommentMargin, y: kScreenH - gifH - 5 * recommentMargin, width: gifW, height: gifH)
     }
     
+    /*
+     
+     
+     -(BOOL)isCurrentViewControllerVisible:(UIViewController *)viewController
+     {
+     return (viewController.isViewLoaded && viewController.view.window);
+     }
+     */
+    
+    func isCurrentViewControllerVisible(viewController : UIViewController)->Bool{
+        if viewController.view.window != nil{
+            return false
+        }
+        
+        let bool = viewController.isViewLoaded
+        
+        if bool == true {
+            return true
+        }else{
+            return false
+        }
+    }
     
     fileprivate func creatPlayerView(_ cell : RecommendCell) ->CLPlayerView{
         let videoF = cell.videoModelFrame?.videoF ?? CGRect.zero
@@ -372,10 +440,14 @@ extension RecommendMainVC{
         cell.contentView.addSubview(playerView)
         
         //5 视频地址 调用外部变量必须加[weak self] in
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {[weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {[weak self] in
             // your code here
+            if self?.isViewShow == true{
+                self?.clPlayerView?.playVideo()
+            }else{
+                self?.clPlayerView?.pausePlay()
+            }
             
-            self?.clPlayerView?.playVideo()
             // 添加到数组(添加到数组操作放到block外面导致一个问题没理解:在didPlayButton方法中contains方法返回一直是false,放在这就好了)
             self?.clPlayerViewArray.append(playerView)
         }
@@ -397,22 +469,27 @@ extension RecommendMainVC{
 }
 
 extension RecommendMainVC : RecommendCellDelegate{
-//    func didPlayer(_ recommendCell: RecommendCell, _ zfpPlayerView: ZFPlayerView) {
-//        currentPlayerIngCell = recommendCell
-//        currentZfpPlayerView = zfpPlayerView
-//    }
+    //    func didPlayer(_ recommendCell: RecommendCell, _ zfpPlayerView: ZFPlayerView) {
+    //        currentPlayerIngCell = recommendCell
+    //        currentZfpPlayerView = zfpPlayerView
+    //    }
     
     func didPlayClickButton(_ recommendCell: RecommendCell, _ indexPath: IndexPath) {
         let videoModelFrame = recommentVM.videoModelFrameArray[indexPath.item]
         let urls = videoModelFrame.videoUrl
+        initPlayerView(cell: recommendCell, recommendCell.videoModelFrame)
     }
 }
 
-    // MARK:- scrollowView代理
+// MARK:- scrollowView代理
 extension RecommendMainVC {
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-   
+        
         if playingCell != nil{
             /* 我发现作者对于内存的释放有一点问题，播放器销毁后内存并没有下降
              * clPlayerView?.calculateScrollOffset(tableView, cell: playingCell!)
@@ -441,13 +518,14 @@ extension RecommendMainVC {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
+            
             if isAutoPlay == true{
                 if firstCellIsOutWindow == true{
                     
                     handleScrollPlaying(scrollView)
                 }
             }
-
+            
         }
     }
     
@@ -459,7 +537,7 @@ extension RecommendMainVC {
                 handleScrollPlaying(scrollView)
             }
         }
-
+        
     }
 }
 

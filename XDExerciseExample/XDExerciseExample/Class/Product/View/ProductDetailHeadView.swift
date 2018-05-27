@@ -65,10 +65,9 @@ class ProductDetailHeadView: UIView {
         didSet{
             guard let productModelFrame = productModelFrame else { return }
             
-            setupData(productModelFrame)
-            
             setupFrame(productModelFrame)
-           
+            
+            setupData(productModelFrame)
         }
     }
     
@@ -86,6 +85,11 @@ class ProductDetailHeadView: UIView {
         addSubview(couponView)
         addSubview(staticView)
         addSubview(grayBottomView)
+
+        topicView.delegateTopic = self
+        priceBaoyouView.backgroundColor = .red
+        productNameLabel.backgroundColor = .yellow
+        topicView.backgroundColor = .red
     }
     
     fileprivate func setupCycleScrollView(){
@@ -108,6 +112,7 @@ extension ProductDetailHeadView {
         productNameLabel.attributedText = productModelFrame.productNameAttributedString
         subProductNameLabel.attributedText = productModelFrame.subProductNameAttributedString
         browseNameLabel.text = productModelFrame.browseName
+        topicView.collectionViewReloadData()
     }
     
     fileprivate func setupFrame(_ productModelFrame : ProductModelFrame){
@@ -144,6 +149,33 @@ extension ProductDetailHeadView : SDCycleScrollViewDelegate{
     }
     /// 图片滚动
     func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didScrollTo index: Int) {
+        
+    }
+}
+
+extension ProductDetailHeadView : TopicViewDelegate{
+  
+    func topicCount(_ topicView: TopicView, numberOfItemsInSection: Int) -> Int {
+        guard let productModelFrame = productModelFrame else { return 0 }
+        let topicModelArray = productModelFrame.topicModelArray
+        let count = topicModelArray.count
+        return count
+    }
+    
+    func topicName(_ topicView: TopicView, indexPath: IndexPath) -> String {
+        guard let productModelFrame = productModelFrame else { return "" }
+        let topicModel = productModelFrame.topicModelArray[indexPath.item]
+        
+        return topicModel.topicTitle
+    }
+    
+    func topicSize(_ topicView: TopicView, indexPath: IndexPath) -> CGSize {
+        guard let productModelFrame = productModelFrame else { return CGSize.zero}
+        let topicModel = productModelFrame.topicModelArray[indexPath.item]
+        return CGSize(width: topicModel.topicFrame.width, height: topicModel.topicFrame.height)
+    }
+    
+    func topicView(_ topicView: TopicView, didSelectItemAt indexPath: IndexPath) {
         
     }
 }

@@ -82,7 +82,7 @@ class VideoModelFrame: NSObject {
     
     // MARK:- 临时记录属性
     weak var collectionView : UICollectionView?
-    var indexPathItem : Int = 0
+    var indexPath : IndexPath = IndexPath(item: 0, section: 0)
     
     
      init(_ videoModel : Video) {

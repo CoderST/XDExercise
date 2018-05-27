@@ -8,16 +8,42 @@
 
 import UIKit
 import AVFoundation
+import Reachability
+import SVProgressHUD
+import Bugly
+
+enum H5GO_TYPE : String{
+    /// 商品 go 商品详情页
+    case PRODUCT = "product"
+    /// 日常 go 日常详情页
+    case NORMAL = "normal"
+    /// 想要 go 商品详情页
+    case IWANT = "iwant"
+    /// 个人主页 go 个人主页
+    case PERSONHOME = "person_home"
+    /// 活动 go 日常详情页
+    case ACTION = "action"
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var reach: Reachability?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        // 初始化Bugly
-//        Bugly.start(withAppId: BUGLY_APP_ID)
+        
+        
+        kUDS.removeObject(forKey: "token")
+        kUDS.synchronize()
+        /// 监听网络状态
+        checkoutNetworkStatus()
+        /// 设置SDK
+        setupSDK()
+        /// 设置住窗口
+        setupMainWindow()
+        
         let session = AVAudioSession()
         
         do{
@@ -32,33 +58,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-
-        
-        kUDS.removeObject(forKey: "token")
-        kUDS.synchronize()
-        // 设置住窗口
-        setupMainWindow()
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        //[[NSNotificationCenter defaultCenter]  postNotificationName:AppDelegateWillEnterForegroudKey object:nil];
+        
+
+//        NotificationCenter.default.post(name: AppDelegateWillEnterForegroudKey, object: nil)
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
+    /// NSTime进入后台继续执行
     func applicationWillTerminate(_ application: UIApplication) {
 
         let app = UIApplication.shared
@@ -87,6 +97,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     
+    fileprivate func setupSDK(){
+    
+//         Bugly.startWithAppId("此处替换为你的AppId")
+        /// 开始监控crash
+        Bugly.start(withAppId: BUGLY_APPID)
+        
+        /// 卡顿上报
+        let config = BuglyConfig()
+        config.debugMode = true
+        config.blockMonitorEnable = true
+        config.blockMonitorTimeout = 2
+        config.consolelogEnable = true
+        config.delegate = self
+        Bugly.start(withAppId: BUGLY_APPID, config: config)
+        
+    }
+    
+
+    
+    /// 设置主窗口
     fileprivate func setupMainWindow() {
         // 1.创建窗口
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -104,7 +134,124 @@ extension AppDelegate {
         
     }
     
+    /// 检查网络状态
+    fileprivate func checkoutNetworkStatus(){
+        reach = Reachability.forInternetConnection()
+        
+        // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
+        reach!.reachableOnWWAN = false
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reachabilityChanged),
+            name: NSNotification.Name.reachabilityChanged,
+            object: nil
+        )
+        
+        reach!.startNotifier()
+    }
     
     
+    @objc fileprivate func reachabilityChanged(notification: NSNotification) {
+        if reach!.isReachableViaWiFi() || reach!.isReachableViaWWAN() {
+            SVProgressHUD.showInfo(withStatus: "service avalaible")
+        } else {
+            SVProgressHUD.showInfo(withStatus: "No service avalaible")
+//            print("No service avalaible!!!")
+        }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        handleOpenFromLinePayWithUrl(url)
+        return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        handleOpenFromLinePayWithUrl(url)
+        return true
+    }
+    
+    func handleOpenFromLinePayWithUrl(_ url : URL){
+        /// 如果是tabbar类型 就从对应tabbar首页跳转 发出通知 从首页进行跳转
+        
+        /// 2 用下面方法跳
+        debugLog(url)
+        guard  let urlLowercased = url.scheme?.lowercased() else {
+            debugLog("没有URL")
+            return
+        }
+        
+        guard urlLowercased == "xiudouios" else {
+            return
+        }
+        
+        guard let urlHost = url.host else {
+            return
+        }
+
+        guard urlHost == "detail" else {
+            return
+        }
+        
+        let relativePath = url.relativePath as NSString
+        if relativePath.hasPrefix("/"){
+            
+            var ID = ""
+            if let pid = url.query{
+                let mypid = pid as NSString
+                if mypid.contains("="){
+                    let stringArray = mypid.components(separatedBy: "=")
+                    ID = stringArray.last ?? ""
+                }
+            }
+            
+            
+            let path = relativePath.substring(from: 1)
+            guard let type = H5GO_TYPE(rawValue: path) else {
+                return
+            }
+            
+            switch type {
+            case .PRODUCT:
+                debugLog("PRODUCT")
+                let productVC = ProductDetailVC()
+                productVC.product_id = ID
+                let rootvc = MainNavigationController(rootViewController: productVC)
+                /// 延迟跳转
+                let time: TimeInterval = 0.5
+//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+//                    // 如果window存在 普通跳转
+//
+//                    // 如果window不存在,
+//                    self.window?.visibleViewController()?.navigationController?.present(rootvc, animated: true, completion: nil)
+//
+////
+//                }
+//                self.window?.visibleViewController()?.navigationController?.pushViewController(productVC, animated: true)
+                self.window?.visibleViewController()?.navigationController?.present(rootvc, animated: true, completion: nil)
+                
+            case .NORMAL:
+                debugLog("NORMAL")
+            case .PERSONHOME:
+                debugLog("PERSONHOME")
+            case .IWANT:
+                debugLog("IWANT")
+            case .ACTION:
+                debugLog("ACTION")
+            default:
+                debugLog("default==")
+            }
+            
+        }
+     
+        
+        
+        
+    }
+}
+
+extension AppDelegate : BuglyDelegate{
+    func attachment(for exception: NSException?) -> String? {
+        return "Do you want to do..."
+    }
 }
 

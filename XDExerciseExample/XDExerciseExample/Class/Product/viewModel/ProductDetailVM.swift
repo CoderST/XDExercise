@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class ProductDetailVM: NSObject {
     var productModelFrame : ProductModelFrame?
     var buyShowModel : BuyShowModel?
@@ -22,7 +22,7 @@ extension ProductDetailVM{
     func loadProductDetailDatas(_ product_id : String, _ authToken : String = "", _ isSpikeProduct : String, successCallBack : @escaping ()->(), stateCallBack : @escaping (_ message : String)->(), failedCallBack : @escaping ()->()){
         let parameters : [String : Any] = [
             "product_id" : product_id,
-            "auth_token" : authToken,
+//            "auth_token" : authToken,
             "spike" : isSpikeProduct
         ]
         NetWork.requestData(.post, URLString: PRODUCT_DETAIL, model: PRODUCT_URL, parameters: parameters, version: "2.8.0") { (result) in
@@ -39,6 +39,7 @@ extension ProductDetailVM{
                     successCallBack()
                 }else{
                     debugLog(productModel.code)
+                    SVProgressHUD.showInfo(withStatus: "PRODUCT_DETAIL + \(resultDict["message"] ?? "没解析出来")")
                 }
                 
                 

@@ -16,6 +16,7 @@ class RecommentVideoView: UIView {
     
     fileprivate lazy var videoCoverImageView : UIImageView = {
         let videoCoverImageView = UIImageView()
+        videoCoverImageView.isUserInteractionEnabled = true
         videoCoverImageView.contentMode = .scaleAspectFill
         videoCoverImageView.clipsToBounds = true
         return videoCoverImageView
@@ -67,7 +68,10 @@ class RecommentVideoView: UIView {
     
     @objc func buttonAction(){
         
-//            delegateVideoView?.didPlayClickButton(self,index)
+        if  videoModelFrame?.indexPath != nil{
+            let indexPath = videoModelFrame?.indexPath
+            delegateVideoView?.didPlayClickButton(self,indexPath!)
+        }
     }
         
     required init?(coder aDecoder: NSCoder) {

@@ -8,11 +8,11 @@
 
 import UIKit
 @objc protocol TopicViewDelegate : class {
-    func topicCount(_ topicView : TopicView)->Int
-    func topicSize(_ topicView : TopicView)->CGSize
-    func topicName(_ topicView : TopicView)->String
+    func topicCount(_ topicView : TopicView,numberOfItemsInSection: Int)->Int
+    func topicSize(_ topicView : TopicView,indexPath: IndexPath)->CGSize
+    func topicName(_ topicView : TopicView,indexPath: IndexPath)->String
     
-    @objc optional func topicView(_ topicView : TopicView, didSelectItemAt indexPath: IndexPath)
+//    @objc optional func topicView(_ topicView : TopicView, didSelectItemAt indexPath: IndexPath)
 }
 fileprivate let TopicCollectionViewCellIdentifier = "TopicCollectionViewCellIdentifier"
 class TopicView: UIView {
@@ -29,6 +29,7 @@ class TopicView: UIView {
         layout.minimumLineSpacing = 0
         // 创建UICollectionView
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: kScreenH), collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -38,6 +39,11 @@ class TopicView: UIView {
         collectionView.delegate = self
         return collectionView;
         }()
+    
+    
+    func collectionViewReloadData(){
+        collectionView.reloadData()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,13 +62,15 @@ class TopicView: UIView {
 
 extension TopicView : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = delegateTopic?.topicCount(self) ?? 0
+        
+        let count = delegateTopic?.topicCount(self, numberOfItemsInSection: section) ?? 0
         return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicCollectionViewCellIdentifier, for: indexPath)
         cell.contentView.backgroundColor = UIColor.randomColor()
+        
         return cell
     }
 }
@@ -70,13 +78,13 @@ extension TopicView : UICollectionViewDataSource{
 extension TopicView : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = delegateTopic?.topicSize(self) ?? CGSize.zero
+        let size = delegateTopic?.topicSize(self, indexPath: indexPath) ?? CGSize.zero
         return size
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegateTopic?.topicView!(self, didSelectItemAt: indexPath)
+//        delegateTopic?.topicView!(self, didSelectItemAt: indexPath)
     }
 }
 

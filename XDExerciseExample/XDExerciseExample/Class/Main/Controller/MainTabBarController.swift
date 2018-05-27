@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let iOS7 = Double(UIDevice.current.systemVersion)! >= 7.0
+//let iOS7 = Double(UIDevice.current.systemVersion)! >= 7.0
 class MainTabBarController: UITabBarController {
 
     // MARK:- 懒加载
@@ -94,11 +94,11 @@ extension MainTabBarController {
             
             debugLog("没有选中的图片")
             return }
-        if iOS7{
-            childVc.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
-        }else{
+//        if iOS7{
+//            childVc.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+//        }else{
             childVc.tabBarItem.selectedImage = selectedImage
-        }
+//        }
         
         let mainNav = MainNavigationController(rootViewController: childVc)
         
